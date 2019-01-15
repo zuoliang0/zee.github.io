@@ -113,10 +113,12 @@
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
 <meta property="og:description" content="理论部分要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-11T07:05:32.902Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg">
+<meta property="og:updated_time" content="2019-01-14T07:04:15.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java 远程通信技术学习">
 <meta name="twitter:description" content="理论部分要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg">
 
 
 
@@ -401,12 +403,24 @@
                 
               
 
-              <time title="创建时间：2019-01-11 14:18:27 / 修改时间：15:05:32" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
+              <time title="创建时间：2019-01-11 14:18:27" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-14 15:04:15" itemprop="dateModified" datetime="2019-01-14T15:04:15+08:00">2019-01-14</time>
               
             
           </span>
@@ -476,7 +490,12 @@
 <li>怎么接收和处理流？</li>
 </ol>
 <p>在java领域中知名的有：RMI、XML-RPC、Binary-RPC、SOAP、CORBA、JMS</p>
-<h2 id="具体协议"><a href="#具体协议" class="headerlink" title="具体协议"></a>具体协议</h2><h3 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h3><p>RMI是个典型的为java定制的远程通信协议，我们都知道，在单独的jvm中，我们可以通过直接调用对象实例的方式来实现通信。那么在远程通信时，如果也能按照这种方式当然是最好了，这种远程通信的机制成为RPC（Remote Procedure Call）</p>
+<h2 id="具体协议"><a href="#具体协议" class="headerlink" title="具体协议"></a>具体协议</h2><h3 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h3><p>RMI是个典型的为java定制的远程通信协议，我们都知道，在单独的jvm中，我们可以通过直接调用对象实例的方式来实现通信。那么在远程通信时，如果也能按照这种方式当然是最好了，这种远程通信的机制成为RPC（Remote Procedure Call）<br><img src="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg" alt="图" title="远程调用"></p>
+<ol>
+<li>传输的标准格式是什么？<br> Java ObjectStream</li>
+<li>怎么样将请求转化为传输的流？</li>
+<li></li>
+</ol>
 
       
     </div>
@@ -531,8 +550,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/10/java 防xss注入/" rel="next" title="java 过滤xss emoji">
-                <i class="fa fa-chevron-left"></i> java 过滤xss emoji
+              <a href="/2019/01/11/Spring Cloud 远程调用--Feign/" rel="next" title="Spring Cloud 远程调用--Feign">
+                <i class="fa fa-chevron-left"></i> Spring Cloud 远程调用--Feign
               </a>
             
           </div>
@@ -540,6 +559,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/动态代理记录/" rel="prev" title="java动态代理">
+                java动态代理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -618,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -654,7 +677,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
