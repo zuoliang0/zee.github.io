@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
 <meta property="og:description" content="什么是XSS攻击XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本。攻击者利用XSS漏洞旁路掉访问控制——例如同源策略(same origin policy)。这种类型的漏洞由于被黑客用来编写危害性更大的网络钓鱼(Phishing)攻击而变得广为人知。 XSS漏洞的危害 网络钓鱼，包括盗取各类用户">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-11T02:11:18.818Z">
+<meta property="og:updated_time" content="2019-01-15T10:00:28.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java 过滤xss emoji">
 <meta name="twitter:description" content="什么是XSS攻击XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本。攻击者利用XSS漏洞旁路掉访问控制——例如同源策略(same origin policy)。这种类型的漏洞由于被黑客用来编写危害性更大的网络钓鱼(Phishing)攻击而变得广为人知。 XSS漏洞的危害 网络钓鱼，包括盗取各类用户">
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-11 10:11:18" itemprop="dateModified" datetime="2019-01-11T10:11:18+08:00">2019-01-11</time>
+                <time title="修改时间：2019-01-15 18:00:28" itemprop="dateModified" datetime="2019-01-15T18:00:28+08:00">2019-01-15</time>
               
             
           </span>
@@ -491,106 +491,9 @@
 <li>提升用户权限，包括进一步渗透网站；</li>
 </ol>
 <h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>Emoji的开源代码</p>
-<p><a href="https://github.com/vdurmont/emoji-java" target="_blank" rel="noopener">https://github.com/vdurmont/emoji-java</a></p>
-<pre><code>import com.vdurmont.emoji.EmojiParser;
-
-import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-
-/**
- * XSS SQL EMOJI过滤
- */
-public class XssAndSqlAndEmojiFilter  {
-
-    /**
-     * 将容易引起xss &amp; sql漏洞的半角字符直接替换成全角字符
-     *
-     * @param s
-     * @return
-     */
-    private static String xssEncode(String s) {
-        if (s == null || s.isEmpty()) {
-            return s;
-        }else{
-            s = stripXSSAndSql(s);
-        }
-        StringBuilder sb = new StringBuilder(s.length() + 16);
-        for (int i = 0; i &lt; s.length(); i++) {
-            char c = s.charAt(i);
-            switch (c) {
-                case &apos;&gt;&apos;:
-                    sb.append(&quot;＞&quot;);// 转义大于号
-                    break;
-                case &apos;&lt;&apos;:
-                    sb.append(&quot;＜&quot;);// 转义小于号
-                    break;
-                case &apos;\&apos;&apos;:
-                    sb.append(&quot;＇&quot;);// 转义单引号
-                    break;
-                case &apos;\&quot;&apos;:
-                    sb.append(&quot;＂&quot;);// 转义双引号
-                    break;
-                case &apos;&amp;&apos;:
-                    sb.append(&quot;＆&quot;);// 转义&amp;
-                    break;
-                case &apos;#&apos;:
-                    sb.append(&quot;＃&quot;);// 转义#
-                    break;
-                default:
-                    sb.append(c);
-                    break;
-            }
-        }
-        return sb.toString();
-    }
-
-    /**
-     *
-     * 防止xss跨脚本攻击（替换，根据实际情况调整）
-     */
-
-    public static String stripXSSAndSql(String value) {
-        if (value != null) {
-            // NOTE: It&apos;s highly recommended to use the ESAPI library and
-            // uncomment the following line to
-            // avoid encoded attacks.
-            // value = ESAPI.encoder().canonicalize(value);
-            // Avoid null characters
-/**         value = value.replaceAll(&quot;&quot;, &quot;&quot;);***/
-            // Avoid anything between script tags
-            Pattern scriptPattern = Pattern.compile(&quot;&lt;[\r\n| | ]*script[\r\n| | ]*&gt;(.*?)&lt;/[\r\n| | ]*script[\r\n| | ]*&gt;&quot;, Pattern.CASE_INSENSITIVE);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid anything in a src=&quot;http://www.yihaomen.com/article/java/...&quot; type of e-xpression
-            scriptPattern = Pattern.compile(&quot;src[\r\n| | ]*=[\r\n| | ]*[\\\&quot;|\\\&apos;](.*?)[\\\&quot;|\\\&apos;]&quot;, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Remove any lonesome &lt;/script&gt; tag
-            scriptPattern = Pattern.compile(&quot;&lt;/[\r\n| | ]*script[\r\n| | ]*&gt;&quot;, Pattern.CASE_INSENSITIVE);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Remove any lonesome &lt;script ...&gt; tag
-            scriptPattern = Pattern.compile(&quot;&lt;[\r\n| | ]*script(.*?)&gt;&quot;, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid eval(...) expressions
-            scriptPattern = Pattern.compile(&quot;eval\\((.*?)\\)&quot;, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid e-xpression(...) expressions
-            scriptPattern = Pattern.compile(&quot;e-xpression\\((.*?)\\)&quot;, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid javascript:... expressions
-            scriptPattern = Pattern.compile(&quot;javascript[\r\n| | ]*:[\r\n| | ]*&quot;, Pattern.CASE_INSENSITIVE);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid vbscript:... expressions
-            scriptPattern = Pattern.compile(&quot;vbscript[\r\n| | ]*:[\r\n| | ]*&quot;, Pattern.CASE_INSENSITIVE);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-            // Avoid onload= expressions
-            scriptPattern = Pattern.compile(&quot;onload(.*?)=&quot;, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-            value = scriptPattern.matcher(value).replaceAll(&quot;&quot;);
-        }
-        return value;
-    }
-
-}
-</code></pre><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
+<p><a href="https://github.com/vdurmont/emoji-java" target="_blank" rel="noopener">https://github.com/vdurmont/emoji-java</a><br><a id="more"></a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.vdurmont.emoji.EmojiParser;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequestWrapper;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * XSS SQL EMOJI过滤</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XssAndSqlAndEmojiFilter</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将容易引起xss &amp; sql漏洞的半角字符直接替换成全角字符</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">xssEncode</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            s = stripXSSAndSql(s);</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(s.length() + <span class="number">16</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&gt;'</span>:</span><br><span class="line">                    sb.append(<span class="string">"＞"</span>);<span class="comment">// 转义大于号</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&lt;'</span>:</span><br><span class="line">                    sb.append(<span class="string">"＜"</span>);<span class="comment">// 转义小于号</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'\''</span>:</span><br><span class="line">                    sb.append(<span class="string">"＇"</span>);<span class="comment">// 转义单引号</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'\"'</span>:</span><br><span class="line">                    sb.append(<span class="string">"＂"</span>);<span class="comment">// 转义双引号</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'&amp;'</span>:</span><br><span class="line">                    sb.append(<span class="string">"＆"</span>);<span class="comment">// 转义&amp;</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'#'</span>:</span><br><span class="line">                    sb.append(<span class="string">"＃"</span>);<span class="comment">// 转义#</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    sb.append(c);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 防止xss跨脚本攻击（替换，根据实际情况调整）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">stripXSSAndSql</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (value != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">NOTE:</span> It's highly recommended to use the ESAPI library and</span></span><br><span class="line">            <span class="comment">// uncomment the following line to</span></span><br><span class="line">            <span class="comment">// avoid encoded attacks.</span></span><br><span class="line">            <span class="comment">// value = ESAPI.encoder().canonicalize(value);</span></span><br><span class="line">            <span class="comment">// Avoid null characters</span></span><br><span class="line"><span class="comment">/**         value = value.replaceAll("", "");***/</span></span><br><span class="line">            <span class="comment">// Avoid anything between script tags</span></span><br><span class="line">            Pattern scriptPattern = Pattern.compile(<span class="string">"&lt;[\r\n| | ]*script[\r\n| | ]*&gt;(.*?)&lt;/[\r\n| | ]*script[\r\n| | ]*&gt;"</span>, Pattern.CASE_INSENSITIVE);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid anything in a src="http://www.yihaomen.com/article/java/..." type of e-xpression</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"src[\r\n| | ]*=[\r\n| | ]*[\\\"|\\\'](.*?)[\\\"|\\\']"</span>, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Remove any lonesome &lt;/script&gt; tag</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"&lt;/[\r\n| | ]*script[\r\n| | ]*&gt;"</span>, Pattern.CASE_INSENSITIVE);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Remove any lonesome &lt;script ...&gt; tag</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"&lt;[\r\n| | ]*script(.*?)&gt;"</span>, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid eval(...) expressions</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"eval\\((.*?)\\)"</span>, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid e-xpression(...) expressions</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"e-xpression\\((.*?)\\)"</span>, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid javascript:... expressions</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"javascript[\r\n| | ]*:[\r\n| | ]*"</span>, Pattern.CASE_INSENSITIVE);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid vbscript:... expressions</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"vbscript[\r\n| | ]*:[\r\n| | ]*"</span>, Pattern.CASE_INSENSITIVE);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">            <span class="comment">// Avoid onload= expressions</span></span><br><span class="line">            scriptPattern = Pattern.compile(<span class="string">"onload(.*?)="</span>, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);</span><br><span class="line">            value = scriptPattern.matcher(value).replaceAll(<span class="string">""</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><blockquote>
 <p>来源：CSDN<br>原文：幻丶影  <a href="https://blog.csdn.net/q826qq1878/article/details/78730979" target="_blank" rel="noopener">https://blog.csdn.net/q826qq1878/article/details/78730979</a> </p>
 </blockquote>
 
@@ -657,8 +560,8 @@ public class XssAndSqlAndEmojiFilter  {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/Spring Cloud 远程调用--Feign/" rel="prev" title="Spring Cloud 远程调用--Feign">
-                Spring Cloud 远程调用--Feign <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/11/java远程通信技术学习/" rel="prev" title="java 远程通信技术学习">
+                java 远程通信技术学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -738,7 +641,7 @@ public class XssAndSqlAndEmojiFilter  {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -767,8 +670,6 @@ public class XssAndSqlAndEmojiFilter  {
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
                     
                       
                     
