@@ -105,25 +105,29 @@
 
 
 
-  <meta name="description" content="2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。 说下18年都关注过的东西：  区块链 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正">
-<meta name="keywords" content="生活">
+  <meta name="description" content="导言Feign是一款java的Restful客户端组件，Feign使得 Java HTTP 客户端编写更方便。Feign 灵感来源于Retrofit, JAXRS-2.0和WebSocket。在之前的文章里面，有讲到java实现远程调用的几种技术，本章要讲的就是使用Feign来实现Spring cloud 的远程调用，在这之前可能需要先了解下spring cloud的服务注册，有了服务注册就可以通">
+<meta name="keywords" content="Spring Cloud,java,基础知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="砥砺2019">
-<meta property="og:url" content="https://blog.zzl.ink/posts/52c0d6b8/index.html">
+<meta property="og:title" content="Spring Cloud 远程调用--Feign">
+<meta property="og:url" content="https://blog.zzl.ink/posts/6f7fe039.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。 说下18年都关注过的东西：  区块链 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正">
+<meta property="og:description" content="导言Feign是一款java的Restful客户端组件，Feign使得 Java HTTP 客户端编写更方便。Feign 灵感来源于Retrofit, JAXRS-2.0和WebSocket。在之前的文章里面，有讲到java实现远程调用的几种技术，本章要讲的就是使用Feign来实现Spring cloud 的远程调用，在这之前可能需要先了解下spring cloud的服务注册，有了服务注册就可以通">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-15T11:51:02.987Z">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/c5c35604gy1fz62n6xn36j20pk0g3dn8.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/large/c5c35604gy1fz62vba3asj20oj0i83z6.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/large/c5c35604gy1fz64fwbqfnj218k0e6wfs.jpg">
+<meta property="og:updated_time" content="2019-01-15T11:51:02.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="砥砺2019">
-<meta name="twitter:description" content="2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。 说下18年都关注过的东西：  区块链 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正">
+<meta name="twitter:title" content="Spring Cloud 远程调用--Feign">
+<meta name="twitter:description" content="导言Feign是一款java的Restful客户端组件，Feign使得 Java HTTP 客户端编写更方便。Feign 灵感来源于Retrofit, JAXRS-2.0和WebSocket。在之前的文章里面，有讲到java实现远程调用的几种技术，本章要讲的就是使用Feign来实现Spring cloud 的远程调用，在这之前可能需要先了解下spring cloud的服务注册，有了服务注册就可以通">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/c5c35604gy1fz62n6xn36j20pk0g3dn8.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/posts/52c0d6b8/">
+  <link rel="canonical" href="https://blog.zzl.ink/posts/6f7fe039.html">
 
 
 
@@ -133,7 +137,7 @@
   };
 </script>
 
-  <title>砥砺2019 | 左良 | Sean's Blog</title>
+  <title>Spring Cloud 远程调用--Feign | 左良 | Sean's Blog</title>
   
 
 
@@ -358,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/52c0d6b8/">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6f7fe039.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="onlyxx">
@@ -375,7 +379,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">砥砺2019
+          <h2 class="post-title" itemprop="name headline">Spring Cloud 远程调用--Feign
 
               
             
@@ -401,7 +405,7 @@
                 
               
 
-              <time title="创建时间：2019-01-10 13:18:27" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:27+08:00">2019-01-10</time>
+              <time title="创建时间：2019-01-11 14:18:27" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
             
 
             
@@ -435,7 +439,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/记录生活/" itemprop="url" rel="index"><span itemprop="name">记录生活</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
@@ -450,9 +454,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/52c0d6b8/#comments" itemprop="discussionUrl">
+                <a href="/posts/6f7fe039.html#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/52c0d6b8/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/6f7fe039.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -480,14 +484,16 @@
       
 
       
-        <p>2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。</p>
-<p>说下18年都关注过的东西：</p>
-<ol>
-<li>区块链<br> 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正能落地的项目不到百分之一。但是作为一个技术人，能在其中有一定的积累还算是有一定的谈资。</li>
-<li>买房<br> 虽然还是最终还是没在18年买到房，但是一直关心着这个事情。早早就做好准备，把户口从老家迁到城市，但是一直因为钱的问题，拖延，拖延，到后来又没有了资格，心态转变了，随缘吧。房子对于单身来说并不重要，对于一个要准备结婚的人来说，那就是刚需有房才会有安全感。做好准备，随时上车！</li>
-<li>跳槽<br> 这一年我离开了我大学毕业之后第一家公司，还是点不舍，公司对我很好，不过我还是想要离开，原来的项目，业务，对于如今的我进步的空间已经比较小了，通过这次跳槽去了解更多的市场环境，使用一些自己前无法独立使用的技术，接触新的项目。</li>
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>Feign是一款java的Restful客户端组件，Feign使得 Java HTTP 客户端编写更方便。Feign 灵感来源于Retrofit, JAXRS-2.0和WebSocket。在之前的文章里面，有讲到java实现远程调用的几种技术，本章要讲的就是使用Feign来实现Spring cloud 的远程调用，在这之前可能需要先了解下spring cloud的服务注册，有了服务注册就可以通过Feign来实现远程调用了。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p><img src="https://ws3.sinaimg.cn/large/c5c35604gy1fz62n6xn36j20pk0g3dn8.jpg" alt="" title="调用方式"><br>直接就是用注解定义一个 FeignClient接口，然后调用那个接口就可以了。人家Feign Client会在底层根据你的注解，跟你指定的服务建立连接、构造请求、发起靕求、获取响应、解析响应，等等</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p><img src="https://wx1.sinaimg.cn/large/c5c35604gy1fz62vba3asj20oj0i83z6.jpg" alt="" title="实现原理"></p>
+<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><p>Feign 默认创建了一些基于约定的注解接口<br>注解名称|目标接口|使用方法<br><code>@RequestLine</code>| Method |用于给请求设定<code>HttpMethod</code>和<code>UriTemplate</code> 使用相应的@Param注释参数解析用大括号{expression}包装的表达式，值<br><code>@Param</code>Parameter| 定义模板变量，其值将用于按名称解析相应的模板表达式。<br><code>@Headers</code>|Method, Type|定义HeaderTemplate; UriTemplate的变种。 使用@Param注释值来解析相应的表达式。 在Type上使用时，模板将应用于每个请求。 在Method上使用时，模板仅适用于带注释的方法。<br><code>@QueryMap</code>| Parameter| 定义名称 - 值对的映射或POJO，去映射到查询url中<br><code>@HeaderMap</code>| Parameter| 定义名称 - 值对的映射或POJO，去映射到查询请求头中<br><code>@Body</code>| Method| 定义一个模板，类似于UriTemplate和HeaderTemplate，它使用@Param带注释的值来解析相应的表达式。</p>
+<h2 id="类图结构"><a href="#类图结构" class="headerlink" title="类图结构"></a>类图结构</h2><p><img src="https://wx1.sinaimg.cn/large/c5c35604gy1fz64fwbqfnj218k0e6wfs.jpg" alt="" title="类图"></p>
+<p>三层分别为：<br>•代理层 动态代理调用层<br>•转换层 方法转http请求，解码http响应<br>•网络层 http请求发送</p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ol>
+<li>feign官网 <a href="https://github.com/OpenFeign/feign/" target="_blank" rel="noopener">https://github.com/OpenFeign/feign/</a></li>
+<li>feign 源码解析 <a href="http://techblog.ppdai.com/2018/05/14/20180514/" title="拍拍贷基础框架团队-技术" target="_blank" rel="noopener">http://techblog.ppdai.com/2018/05/14/20180514/</a></li>
 </ol>
-<p>2019年，砥砺前行，踏实做事，不断学习，提升自己！</p>
 
       
     </div>
@@ -517,7 +523,7 @@
         </li>
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="/posts/52c0d6b8/" title="砥砺2019">posts/52c0d6b8/</a>
+          <a href="/posts/6f7fe039.html" title="Spring Cloud 远程调用--Feign">posts/6f7fe039.html</a>
         </li>
         <li class="post-copyright-license">
           <strong>版权： </strong>
@@ -529,7 +535,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/生活/" rel="tag"># 生活</a>
+            <a href="/tags/Spring-Cloud-java-基础知识/" rel="tag"># Spring Cloud,java,基础知识</a>
           
         </div>
       
@@ -542,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/378a9772/" rel="next" title="java 过滤xss emoji">
-                <i class="fa fa-chevron-left"></i> java 过滤xss emoji
+              <a href="/posts/6bc7d645.html" rel="next" title="java 远程通信技术学习">
+                <i class="fa fa-chevron-left"></i> java 远程通信技术学习
               </a>
             
           </div>
@@ -552,8 +558,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/6bc7d645/" rel="prev" title="java 远程通信技术学习">
-                java 远程通信技术学习 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/bcee6ab6.html" rel="prev" title="java动态代理">
+                java动态代理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,8 +612,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -624,7 +639,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -708,6 +723,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">3.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用注解"><span class="nav-number">4.</span> <span class="nav-text">常用注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类图结构"><span class="nav-number">5.</span> <span class="nav-text">类图结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">6.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -862,9 +894,9 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = "https://blog.zzl.ink/posts/52c0d6b8/";
-    this.page.identifier = "posts/52c0d6b8/";
-    this.page.title = '砥砺2019';
+    this.page.url = "https://blog.zzl.ink/posts/6f7fe039.html";
+    this.page.identifier = "posts/6f7fe039.html";
+    this.page.title = 'Spring Cloud 远程调用--Feign';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');
