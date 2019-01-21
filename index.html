@@ -60,16 +60,16 @@
 <link rel="stylesheet" href="/css/main.css?v=6.7.0">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=6.7.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=6.7.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=6.7.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+  <link rel="mask-icon" href="/favicon.ico?v=6.7.0" color="#222">
 
 
 
@@ -403,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2019-01-21 14:18:00 / 修改时间：14:26:30" itemprop="dateCreated datePublished" datetime="2019-01-21T14:18:00+08:00">2019-01-21</time>
+              <time title="创建时间：2019-01-21 14:18:00 / 修改时间：14:35:57" itemprop="dateCreated datePublished" datetime="2019-01-21T14:18:00+08:00">2019-01-21</time>
             
 
             
@@ -475,6 +475,7 @@
             <h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>当浏览器加载一个页面的时候，会默认从该网站的根目录下查找<code>favicon.ico</code>，<br>例如你的网站是<a href="http://www.xxx.com，则默认会查找`www.xxx.com/favicon.ico`文件，" target="_blank" rel="noopener">www.xxx.com，则默认会查找`www.xxx.com/favicon.ico`文件，</a><br>但是注意，如果你的网站是在某个子目录下，例如：<a href="http://www.xxx.com/blog/，那浏览器还是会去这个地址www.xxx.com/favicon.ico找favicon.icon的。" target="_blank" rel="noopener">www.xxx.com/blog/，那浏览器还是会去这个地址www.xxx.com/favicon.ico找favicon.icon的。</a></p>
 <p>推荐一个在线制作favicon的网站<a href="https://tool.lu/favicon/" target="_blank" rel="noopener">https://tool.lu/favicon/</a></p>
 <p>将<code>favicon</code>图标 放到<code>./source</code>目录下</p>
+<p>如果你使用的next主题还需要修改主题配置文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line"><span class="attr">  small:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  medium:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  apple_touch_icon:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  safari_pinned_tab:</span> <span class="string">/favicon.ico</span></span><br><span class="line">  <span class="comment">#android_manifest: /images/manifest.json</span></span><br><span class="line">  <span class="comment">#ms_browserconfig: /images/browserconfig.xml</span></span><br></pre></td></tr></table></figure></p>
 <p>如果你的网站是放在一个子目录里面的，还需要修改网站的<code>_config.yml</code>的配置<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># favicon config</span></span><br><span class="line"><span class="comment">## Place your favicon.ico to /source directory</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">/your</span> <span class="string">dir/favicon.png</span></span><br></pre></td></tr></table></figure></p>
 
           
@@ -2441,7 +2442,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-address-card-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">onlyxx</span>
 
