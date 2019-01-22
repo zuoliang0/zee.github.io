@@ -105,18 +105,18 @@
 
 
 
-  <meta name="description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据  传入参数如下  I_INFOPROVIDER      “信息提供商 I_QUERY             “QUERY名称 I_VIEW_ID           “可有可无 I_T_PARAMETER       “参数列表">
+  <meta name="description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据You set default variables by parameterizing the URL. The variable values are separated from each other by different in">
 <meta name="keywords" content="问题记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SAP BW使用RRW3_GET_QUERY_VIEW_DATA获取数据">
 <meta property="og:url" content="https://blog.zzl.ink/posts/6558eb68.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据  传入参数如下  I_INFOPROVIDER      “信息提供商 I_QUERY             “QUERY名称 I_VIEW_ID           “可有可无 I_T_PARAMETER       “参数列表">
+<meta property="og:description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据You set default variables by parameterizing the URL. The variable values are separated from each other by different in">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-22T02:09:44.794Z">
+<meta property="og:updated_time" content="2019-01-22T07:43:19.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SAP BW使用RRW3_GET_QUERY_VIEW_DATA获取数据">
-<meta name="twitter:description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据  传入参数如下  I_INFOPROVIDER      “信息提供商 I_QUERY             “QUERY名称 I_VIEW_ID           “可有可无 I_T_PARAMETER       “参数列表">
+<meta name="twitter:description" content="导言最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用RRW3_GET_QUERY_VIEW_DATA 来读取query desinger中的数据You set default variables by parameterizing the URL. The variable values are separated from each other by different in">
 
 
 
@@ -401,7 +401,7 @@
                 
               
 
-              <time title="创建时间：2019-01-22 09:18:00 / 修改时间：10:09:44" itemprop="dateCreated datePublished" datetime="2019-01-22T09:18:00+08:00">2019-01-22</time>
+              <time title="创建时间：2019-01-22 09:18:00 / 修改时间：15:43:19" itemprop="dateCreated datePublished" datetime="2019-01-22T09:18:00+08:00">2019-01-22</time>
             
 
             
@@ -468,8 +468,8 @@
       
 
       
-        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用<code>RRW3_GET_QUERY_VIEW_DATA</code> 来读取query desinger中的数据</p>
-<p> 传入参数如下</p>
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用<code>RRW3_GET_QUERY_VIEW_DATA</code> 来读取query desinger中的数据<br>You set default variables by parameterizing the URL. The variable values are separated from each other by different indexes.  The index in the parameter is indicated in the following by <code>_I</code>.</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p> 传入参数如下</p>
 <p> <code>I_INFOPROVIDER</code>      “信息提供商<br> <code>I_QUERY</code>             “QUERY名称<br> <code>I_VIEW_ID</code>           “可有可无<br> <code>I_T_PARAMETER</code>       “参数列表</p>
 <p> <code>I_T_PARAMETER</code> 参数列表相应格式如下</p>
 <h3 id="Characteristic-Value-Variables"><a href="#Characteristic-Value-Variables" class="headerlink" title="Characteristic Value Variables"></a>Characteristic Value Variables</h3><p> <strong> 特征值变量 </strong></p>
@@ -533,7 +533,7 @@
 </tr>
 <tr>
 <td><strong>  VAR_OPERATOR_I </strong></td>
-<td><strong>     An operator </strong>  <br>‘EQ’ = Individual value  <br>‘BT’ = Interval <br>‘LT’ = Less than <br>‘LE’ = Less than or equal to <br>‘GT’ = Greater than <br>‘GE’ = Greater than or equal to</td>
+<td><strong>     An operator </strong>  <br>‘EQ’ = Individual value  <br>‘NE’ = Not the same value （后来我专门找到的，之前的文档都没有） <br>‘BT’ = Interval <br>‘LT’ = Less than <br>‘LE’ = Less than or equal to <br>‘GT’ = Greater than <br>‘GE’ = Greater than or equal to<br>‘NB’ = Not Between <br></td>
 </tr>
 <tr>
 <td><strong>  VAR_VALUE_LOW_EXT_I </strong></td>
@@ -549,6 +549,7 @@
 </tr>
 </tbody>
 </table>
+<p>需要注意的是一旦设置了<code>VAR_VALUE_HIGH_EXT_I</code> 那么 <code>VAR_OPERATOR_I</code> 设置为 <code>BT</code>否则会报错 </p>
 <h3 id="Variables-for-precalculated-value"><a href="#Variables-for-precalculated-value" class="headerlink" title="Variables for precalculated value"></a>Variables for precalculated value</h3><p> <strong> 预计算变量 </strong></p>
 <p>Variables for precalculated value sets are preassigned as follows:<br>预计算变量使用以下形式：</p>
 <table>
@@ -612,8 +613,31 @@
 </tr>
 </tbody>
 </table>
+<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p>为了防止这个链接丢失，我直接把原文复制了过来</p>
+<p>hi,</p>
+<p><b>select-options.</b> Unlike parameters that are declared as elementary variables in ABAP programs, selection criteria are based on special internal tables, called selection tables.</p>
+<p>To define a selection criterion, you must declare a selection table in the declaration part using the SELECT-OPTIONS statement You use the statement SELECT-OPTIONS <seltab> for <f>.</f></seltab></p>
+<p><b>The row type of a selection table is a structure that consists of the following four components: SIGN, OPTION, LOW and HIGH.</b></p>
+<p>Each row of a selection table that contains values represents a sub-condition for the complete selection criterion.</p>
+<p>Description of the individual components: SIGN ‘ The data type of SIGN is C with length 1. The contents of SIGN determine for each row whether the result of the row condition is to be included in or excluded from the resulting set of all rows.</p>
+<p><b>OPTION The data type of OPTION is C with length 2. OPTION contains the selection operator</b>.</p>
+<p><b> The following operators are available If HIGH is empty, you can use EQ, NE, GT, LE, LT,CP, and NP. These operators are the same as those that are used for logical expressions.</b></p>
+<p><b>If HIGH is filled, you can use BT (BeTween) and NB (Not Between).</b></p>
+<p>LOW The data type of LOW is the same as the column type of the database table, to which the selection criterion is linked.</p>
+<p>HIGH The data type of HIGH is the same as the column type of the database table, to which the selection criterion is linked. The contents of HIGH specify the upper limit for a range selection.</p>
+<p>To assign default values to a selection criterion, you use the following syntax: SELECT-OPTIONS <seltab> FOR <f> DEFAULT <g> [TO <h>] ….</h></g></f></seltab></p>
+<p>To allow the user to process only the first row of the selection table on the selection screen, you use the following syntax SELECT-OPTIONS <seltab> FOR <f> ….. NO-EXTENSION …..</f></seltab></p>
+<p>To allow the user to process only single fields on the selection screen, you use the following syntax: SELECT-OPTIONS <seltab> FOR <f> ….. NO INTERVALS …..</f></seltab></p>
+<p>SPA/GPA parameters as default values SELECT-OPTIONS <seltab> FOR <f> … MEMORY ID <pid>……….</pid></f></seltab></p>
+<p>Upper and lower case for selection criteria: SELECT-OPTIONS <seltab> FOR <f> … LOWER CASE …………..</f></seltab></p>
+<p>To make the From field a required field on the selection screen, use: SELECT-OPTIONS <selcrit> FOR <f> … OBLIGATORY …………..</f></selcrit></p>
+<p>To hide input fields on the selection screen, use: SELECT-OPTIONS <selcrit> FOR <f> … NO DISPLAY …………..</f></selcrit></p>
+<p>To modify input fields on the selection screen, use: SELECT-OPTIONS <selcrit> FOR <f> … MODIF ID</f></selcrit></p>
+<p>regards,</p>
+<p>Ashokreddy.</p>
 <h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ol>
 <li><a href="http://blog.sina.com.cn/s/blog_493431f70100hiww.html" target="_blank" rel="noopener">读取BW QUERY 到相应内表 RRW3_GET_QUERY_VIEW_DATA</a>  </li>
+<li><a href="https://archive.sap.com/discussions/thread/439258" target="_blank" rel="noopener">“option” in select-options</a>  </li>
 </ol>
 
       
@@ -869,7 +893,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Characteristic-Value-Variables"><span class="nav-number">1.1.</span> <span class="nav-text">Characteristic Value Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interval-variables"><span class="nav-number">1.2.</span> <span class="nav-text">Interval variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Selection-option-variables"><span class="nav-number">1.3.</span> <span class="nav-text">Selection option variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables-for-precalculated-value"><span class="nav-number">1.4.</span> <span class="nav-text">Variables for precalculated value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchy-Nodes"><span class="nav-number">1.5.</span> <span class="nav-text">Hierarchy Nodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchy-Formula-and-Text-Variables"><span class="nav-number">1.6.</span> <span class="nav-text">Hierarchy, Formula, and Text Variables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">2.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型"><span class="nav-number">2.</span> <span class="nav-text">类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Characteristic-Value-Variables"><span class="nav-number">2.1.</span> <span class="nav-text">Characteristic Value Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interval-variables"><span class="nav-number">2.2.</span> <span class="nav-text">Interval variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Selection-option-variables"><span class="nav-number">2.3.</span> <span class="nav-text">Selection option variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variables-for-precalculated-value"><span class="nav-number">2.4.</span> <span class="nav-text">Variables for precalculated value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchy-Nodes"><span class="nav-number">2.5.</span> <span class="nav-text">Hierarchy Nodes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchy-Formula-and-Text-Variables"><span class="nav-number">2.6.</span> <span class="nav-text">Hierarchy, Formula, and Text Variables</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原文"><span class="nav-number">3.</span> <span class="nav-text">原文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">4.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
             
 
           </div>
