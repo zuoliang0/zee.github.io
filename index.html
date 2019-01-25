@@ -358,6 +358,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/481587f.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/481587f.html" class="post-title-link" itemprop="url">NIO2笔记+搬运</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 09:18:00" itemprop="dateCreated datePublished" datetime="2019-01-24T09:18:00+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-25 11:42:26" itemprop="dateModified" datetime="2019-01-25T11:42:26+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/481587f.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/481587f.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p> 本文是介绍 Java 7 中的 More New I/O APIs for Java (NIO.2) 的两部分文章的第二部分。 正如在 第一部分 中探索的异通道 API 一样， NIO.2 的文件系统用以前 Java 版本处理 I/O 的相关方法，填补了一些重大的空白。 依照 NIO.2 Java 规范要求（JSR 203）：</p>
+<p>Java 平台早就需要一个文件系统接口而不是 java.io.File 类。 该类不会在平台中以一贯的方式来处理文件名，它不支持高效文件属性访问，不允许复杂应用程序利用可用的文件系统特定特性（比如，符号链接）， 而且，其大多数方法在出错时仅返回失败，而不会提供异常信息。<br>补救措施是 Java 7 试用版中的三个新的文件系统包：</p>
+<ul>
+<li><code>java.nio.file</code></li>
+<li><code>java.nio.file.attribute</code></li>
+<li><code>java.nio.file.spi</code></li>
+</ul>
+<p>本文重点关注这些包中最有用的类：</p>
+<ul>
+<li><code>java.nio.file.Files</code> 与 <code>java.nio.file.FileVisitor</code> 使得您可以在文件系统中漫步，在特定目录深度查询文件或者目录，并可对每个查询结果执行用户实现的回调方法。</li>
+<li><code>java.nio.file.Path</code> 与 <code>java.nio.file.WatchService</code> 允许 “ 注册 ” 来监视特定目录。如果在目录中发生了文件创建、修改或者删除操作，监视目录的应用程序将收到通知。</li>
+<li><code>java.nio.attribute.*AttributeView</code> 允许查看此前对于 Java 用户隐藏的文件和目录属性。这些属性包括文件所有者及组权限，访问控制列表（ACL），以及扩展文件属性。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/481587f.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6558eb68.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2088,193 +2292,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/1689ce48.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/1689ce48.html" class="post-title-link" itemprop="url">使用CoinGate来收款</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-10 13:18:27" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:27+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-21 14:09:38" itemprop="dateModified" datetime="2019-01-21T14:09:38+08:00">2019-01-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/1689ce48.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/1689ce48.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p> 占位</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2324,7 +2341,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2355,16 +2372,6 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
