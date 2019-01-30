@@ -358,6 +358,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/f85ee54b.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/f85ee54b.html" class="post-title-link" itemprop="url">centos安装Nginx并配置https转发</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-29 17:32:00 / 修改时间：18:06:29" itemprop="dateCreated datePublished" datetime="2019-01-29T17:32:00+08:00">2019-01-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f85ee54b.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/f85ee54b.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>通过使用nginx来部署https是一种方便的方式。本文是一个自己部署https的笔记</p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>在Centos的默认镜像中不包含nginx，我们需要添加一个<code>EPEL (extra packages for Enterprise Linux) repository</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
+<p>然后运行yum 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure></p>
+<p>安装好之后可以通过service命令来控制nginx的启动</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">start</span> nginx <span class="comment"># 启动</span></span><br><span class="line">sudo systemctl <span class="keyword">stop</span> nginx  <span class="comment"># 关闭</span></span><br><span class="line">sudo systemctl restart nginx  <span class="comment"># 重启</span></span><br><span class="line">systemctl <span class="keyword">status</span> nginx  <span class="comment"># 检查状态</span></span><br></pre></td></tr></table></figure>
+<p>最好启动开机自启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable nginx</span><br></pre></td></tr></table></figure>
+<p>启动之后默认挂载在80端口，https是挂载在443端口，需要检查一下防火墙是否对这些端口进行了封锁。<br>如果系统使用的是<code>firewalld</code> 请使用下列的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --add-service=http</span><br><span class="line">sudo firewall-cmd --add-service=https</span><br><span class="line">sudo firewall-cmd --runtime-to-permanent</span><br></pre></td></tr></table></figure>
+<p>如果是用的<code>iptables</code> 那就用下列的命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>然后访问对应的ip就可以看到nginx的默认页面了</p>
+<h2 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h2><p>证书的申请我不讲了，有很多方法。根据实际情况看下资料就好了。</p>
+<p>https 的证书包含一个<code>private</code>,<code>public</code>两个部分。我们分别建立两个文件夹来存放他们</p>
+<blockquote>
+<p>/etc/ssl/certs 存放公钥的<code>*.crt</code>，<code>*.pem</code> 两种文件<br>/etc/ssl/private 存放公钥的<code>*.key</code>文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/ssl/private</span><br><span class="line">sudo chmod 700 /etc/ssl/private</span><br><span class="line"></span><br><span class="line">sudo mkdir /etc/ssl/certs</span><br><span class="line">sudo chmod 700 /etc/ssl/certs</span><br></pre></td></tr></table></figure>
+<h2 id="配置nginx的Https"><a href="#配置nginx的Https" class="headerlink" title="配置nginx的Https"></a>配置nginx的Https</h2><p>nginx在默认情况下是没有启动https的，所以我们需要新建一个配置文件用来描述https<br>我们需要再<code>/etc/nginx/conf.d/</code>下创建一个<code>.conf</code>结尾的文件，nginx在启动的时候会默认加载<code>conf.d</code>下以<code>.conf</code>结尾的配置文件。<br>我们创建一个ssl的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/conf.d/ssl.conf</span><br></pre></td></tr></table></figure>
+<p>默认情况下的https端口是443端口，<code>server_name</code>是你申请的域名，或者ip。</p>
+<p>然后再加入以下对于https的描述性配置，就完成了nginx的配置了<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> http2 ssl;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">443</span> http2 ssl;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">server_name</span> server_IP_address;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/ssl/certs/nginx-selfsigned.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/ssl/private/nginx-selfsigned.key;</span><br><span class="line">    <span class="attribute">ssl_dhparam</span> /etc/ssl/certs/dhparam.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment">########################################################################</span></span><br><span class="line">    <span class="comment"># from https://cipherli.st/                                            #</span></span><br><span class="line">    <span class="comment"># and https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html #</span></span><br><span class="line">    <span class="comment">########################################################################</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> <span class="string">"EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"</span>;</span><br><span class="line">    <span class="attribute">ssl_ecdh_curve</span> secp384r1;</span><br><span class="line">    <span class="attribute">ssl_session_cache</span> shared:SSL:<span class="number">10m</span>;</span><br><span class="line">    <span class="attribute">ssl_session_tickets</span> <span class="literal">off</span>;</span><br><span class="line">    <span class="attribute">ssl_stapling</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_stapling_verify</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">resolver</span> <span class="number">8.8.8.8</span> <span class="number">8.8.4.4</span> valid=<span class="number">300s</span>;</span><br><span class="line">    <span class="attribute">resolver_timeout</span> <span class="number">5s</span>;</span><br><span class="line">    <span class="comment"># Disable preloading HSTS for now.  You can use the commented out header line that includes</span></span><br><span class="line">    <span class="comment"># the "preload" directive if you understand the implications.</span></span><br><span class="line">    <span class="comment">#add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";</span></span><br><span class="line">    <span class="attribute">add_header</span> Strict-Transport-Security <span class="string">"max-age=63072000; includeSubdomains"</span>;</span><br><span class="line">    <span class="attribute">add_header</span> X-Frame-Options DENY;</span><br><span class="line">    <span class="attribute">add_header</span> X-Content-Type-Options nosniff;</span><br><span class="line"></span><br><span class="line">    <span class="comment">##################################</span></span><br><span class="line">    <span class="comment"># END https://cipherli.st/ BLOCK #</span></span><br><span class="line">    <span class="comment">##################################</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/481587f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1540,6 +1736,198 @@
           <h2 class="post-title" itemprop="name headline">
                 
                 
+                <a href="/posts/bcee6ab6.html" class="post-title-link" itemprop="url">java动态代理</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-14 15:18:00" itemprop="dateCreated datePublished" datetime="2019-01-14T15:18:00+08:00">2019-01-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-21 14:11:04" itemprop="dateModified" datetime="2019-01-21T14:11:04+08:00">2019-01-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/bcee6ab6.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/bcee6ab6.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p><img src="https://ws4.sinaimg.cn/large/c5c35604gy1fz65ekru9hj20fa08oaa6.jpg" alt="" title="简单代理"><br>说java的动态代理之前我们得先了解一下<code>代理模式</code> 这种设计模式，他的特征是代理类与委托类有 同样的接口 ，代理类主要负责预处理或事后处理消息。有点类似于面向切面编程的切点。</p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><ol>
+<li>静态代理<br>静态代理：由程序员创建或特定工具自动生成源代码，也就是在编译时就已经将接口，被代理类，代理类等确定下来。在程序运行之前，代理类的.class文件就已经生成。</li>
+<li>静态代理简单实现</li>
+<li></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/bcee6ab6.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
                 <a href="/posts/bcee6ab6.html" class="post-title-link" itemprop="url">mac下使用VMware Fusion打开windows下的虚拟机</a>
               
             
@@ -1657,198 +2045,6 @@
 <blockquote>
 <p>原文:<a href="https://docs.vmware.com/cn/VMware-Fusion/8.0/com.vmware.fusion.using.doc/GUID-BAE67DAB-B948-45C0-856A-65D31DE77FD5.html" target="_blank" rel="noopener">https://docs.vmware.com/cn/VMware-Fusion/8.0/com.vmware.fusion.using.doc/GUID-BAE67DAB-B948-45C0-856A-65D31DE77FD5.html</a></p>
 </blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/bcee6ab6.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/bcee6ab6.html" class="post-title-link" itemprop="url">java动态代理</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-14 15:18:00" itemprop="dateCreated datePublished" datetime="2019-01-14T15:18:00+08:00">2019-01-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-21 14:11:04" itemprop="dateModified" datetime="2019-01-21T14:11:04+08:00">2019-01-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/bcee6ab6.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/bcee6ab6.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p><img src="https://ws4.sinaimg.cn/large/c5c35604gy1fz65ekru9hj20fa08oaa6.jpg" alt="" title="简单代理"><br>说java的动态代理之前我们得先了解一下<code>代理模式</code> 这种设计模式，他的特征是代理类与委托类有 同样的接口 ，代理类主要负责预处理或事后处理消息。有点类似于面向切面编程的切点。</p>
-<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><ol>
-<li>静态代理<br>静态代理：由程序员创建或特定工具自动生成源代码，也就是在编译时就已经将接口，被代理类，代理类等确定下来。在程序运行之前，代理类的.class文件就已经生成。</li>
-<li>静态代理简单实现</li>
-<li></li>
-</ol>
 
           
         
@@ -2096,202 +2292,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6f7fe039.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/6f7fe039.html" class="post-title-link" itemprop="url">Spring Cloud 远程调用--Feign</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-11 14:18:27" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-21 14:08:32" itemprop="dateModified" datetime="2019-01-21T14:08:32+08:00">2019-01-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/6f7fe039.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/6f7fe039.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>Feign是一款java的Restful客户端组件，Feign使得 Java HTTP 客户端编写更方便。Feign 灵感来源于Retrofit, JAXRS-2.0和WebSocket。在之前的文章里面，有讲到java实现远程调用的几种技术，本章要讲的就是使用Feign来实现Spring cloud 的远程调用，在这之前可能需要先了解下spring cloud的服务注册，有了服务注册就可以通过Feign来实现远程调用了。</p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p><img src="https://ws3.sinaimg.cn/large/c5c35604gy1fz62n6xn36j20pk0g3dn8.jpg" alt="" title="调用方式"><br>直接就是用注解定义一个 FeignClient接口，然后调用那个接口就可以了。人家Feign Client会在底层根据你的注解，跟你指定的服务建立连接、构造请求、发起靕求、获取响应、解析响应，等等</p>
-<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p><img src="https://wx1.sinaimg.cn/large/c5c35604gy1fz62vba3asj20oj0i83z6.jpg" alt="" title="实现原理"></p>
-<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><p>Feign 默认创建了一些基于约定的注解接口<br>注解名称|目标接口|使用方法<br><code>@RequestLine</code>| Method |用于给请求设定<code>HttpMethod</code>和<code>UriTemplate</code> 使用相应的@Param注释参数解析用大括号{expression}包装的表达式，值<br><code>@Param</code>Parameter| 定义模板变量，其值将用于按名称解析相应的模板表达式。<br><code>@Headers</code>|Method, Type|定义HeaderTemplate; UriTemplate的变种。 使用@Param注释值来解析相应的表达式。 在Type上使用时，模板将应用于每个请求。 在Method上使用时，模板仅适用于带注释的方法。<br><code>@QueryMap</code>| Parameter| 定义名称 - 值对的映射或POJO，去映射到查询url中<br><code>@HeaderMap</code>| Parameter| 定义名称 - 值对的映射或POJO，去映射到查询请求头中<br><code>@Body</code>| Method| 定义一个模板，类似于UriTemplate和HeaderTemplate，它使用@Param带注释的值来解析相应的表达式。</p>
-<h2 id="类图结构"><a href="#类图结构" class="headerlink" title="类图结构"></a>类图结构</h2><p><img src="https://wx1.sinaimg.cn/large/c5c35604gy1fz64fwbqfnj218k0e6wfs.jpg" alt="" title="类图"></p>
-<p>三层分别为：<br>•代理层 动态代理调用层<br>•转换层 方法转http请求，解码http响应<br>•网络层 http请求发送</p>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ol>
-<li>feign官网 <a href="https://github.com/OpenFeign/feign/" target="_blank" rel="noopener">https://github.com/OpenFeign/feign/</a></li>
-<li>feign 源码解析 <a href="http://techblog.ppdai.com/2018/05/14/20180514/" title="拍拍贷基础框架团队-技术" target="_blank" rel="noopener">http://techblog.ppdai.com/2018/05/14/20180514/</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2341,7 +2341,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2393,7 +2393,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
