@@ -105,25 +105,25 @@
 
 
 
-  <meta name="description" content="“In order to understand recursion, one must first understand recursion.” – Author Unknown“要知道什么是‘递归’，你首先需要知道‘递归’”——无名氏  为什么写写是保存记忆最佳的方式，之前我一直认为自己的记性非常好，过目不忘。但是年过20之后，慢慢的绝对已经无法达到自己的巅峰水平，需要通过写博客来保存自己的知识">
-<meta name="keywords" content="java jiandaoyun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="要找我吗">
-<meta property="og:url" content="https://blog.zzl.ink/about/index.html">
+  <meta name="description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
+<meta name="keywords" content="java,技术,Springboot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在JavaSpring boot项目中时区问题的解决">
+<meta property="og:url" content="https://blog.zzl.ink/posts/ae46bb1a.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="“In order to understand recursion, one must first understand recursion.” – Author Unknown“要知道什么是‘递归’，你首先需要知道‘递归’”——无名氏  为什么写写是保存记忆最佳的方式，之前我一直认为自己的记性非常好，过目不忘。但是年过20之后，慢慢的绝对已经无法达到自己的巅峰水平，需要通过写博客来保存自己的知识">
+<meta property="og:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-25T01:42:09.004Z">
+<meta property="og:updated_time" content="2019-03-08T07:41:01.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="要找我吗">
-<meta name="twitter:description" content="“In order to understand recursion, one must first understand recursion.” – Author Unknown“要知道什么是‘递归’，你首先需要知道‘递归’”——无名氏  为什么写写是保存记忆最佳的方式，之前我一直认为自己的记性非常好，过目不忘。但是年过20之后，慢慢的绝对已经无法达到自己的巅峰水平，需要通过写博客来保存自己的知识">
+<meta name="twitter:title" content="在JavaSpring boot项目中时区问题的解决">
+<meta name="twitter:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/about/">
+  <link rel="canonical" href="https://blog.zzl.ink/posts/ae46bb1a.html">
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>要找我吗 | 左良 | Sean's Blog</title>
+  <title>在JavaSpring boot项目中时区问题的解决 | 左良 | Sean's Blog</title>
   
 
 
@@ -245,7 +245,7 @@
         
         
           
-          <li class="menu-item menu-item-about menu-item-active">
+          <li class="menu-item menu-item-about">
 
     
     
@@ -338,95 +338,223 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/ae46bb1a.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">要找我吗
-
-</h2>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <blockquote class="blockquote-center"><p>“In order to understand recursion, one must first understand recursion.” – Author Unknown<br>“要知道什么是‘递归’，你首先需要知道‘递归’”——无名氏</p>
-</blockquote>
-<h2 id="为什么写"><a href="#为什么写" class="headerlink" title="为什么写"></a>为什么写</h2><p>写是保存记忆最佳的方式，之前我一直认为自己的记性非常好，过目不忘。但是年过20之后，慢慢的绝对已经无法达到自己的巅峰水平，需要通过写博客来保存自己的知识。之前一直通过one note来记录，后来发现如果能把自己的经验来出来分享，不但可以记录，还可以为自己的职业道路做好更多的铺垫。毕竟我是一个要成为架构师的男人。(滑稽)</p>
-<h2 id="想成为"><a href="#想成为" class="headerlink" title="想成为"></a>想成为</h2><p>3年前第一次踏入职场，面试官问你的梦想是什么，我回答我想成为架构师。后来通过三年不断的学习，跳槽到一家新的创业型的公司，开始有自己的团队，虽然不是架构，但是心中一直怀揣着成为架构师的理想。</p>
-<h2 id="写什么"><a href="#写什么" class="headerlink" title="写什么"></a>写什么</h2><p>从16年左右开始写博客，零零散散的记录了一些自己技术上的问题，今后将会在博客上更新部分套装的教程。</p>
-<ul>
-<li>区块链相关的内容</li>
-<li>帆软报表二次开发相关的内容</li>
-<li>Spring Cloud相关的内容</li>
-<li>架构师的新闻</li>
-</ul>
-<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>Java’s程序猿，期望成为Info Q的 嘉宾。</p>
-<ul>
-<li>95年 坐标成都</li>
-<li>邮箱：onlyxx#outlook.com</li>
-<li>技术：Java，JS，Ruby等</li>
-<li>语言：英，中</li>
-<li>认证信息： <a href="http://bbs.fanruan.com/thread-119205-1-1.html" target="_blank" rel="noopener">帆软致谢开发者</a>，认证开发者<br>如果有BAT内推信息，感谢推我。</li>
-</ul>
-<div class="note default">
-            <p>学不可以已。</p>
-          </div>
+          <h2 class="post-title" itemprop="name headline">在JavaSpring boot项目中时区问题的解决
 
+              
+            
+          </h2>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-08 13:18:27 / 修改时间：15:41:01" itemprop="dateCreated datePublished" datetime="2019-03-08T13:18:27+08:00">2019-03-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ae46bb1a.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/ae46bb1a.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。</p>
+<h2 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h2><p>数据写入的时候需要把时区设置为0时区。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXApplication</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置时区为0时区</span></span><br><span class="line">	<span class="meta">@PostConstruct</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">started</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		TimeZone.setDefault(TimeZone.getTimeZone(<span class="string">"UTC"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//省略main方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在后台使用是使用的Jackson库来序列化<br>并且我么能使用了自定义序列化，所以只需在DateFormat的时候统一指定GMT+8 即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDateTimeSerializer</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Date</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException, JsonProcessingException </span>&#123;</span><br><span class="line">        SimpleDateFormat formatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="comment">//这里很关键，别写错了</span></span><br><span class="line">        formatter.setTimeZone(TimeZone.getTimeZone(<span class="string">"GMT+8"</span>));</span><br><span class="line">        String formattedDate = formatter.format(date);</span><br><span class="line">        jsonGenerator.writeString(formattedDate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在需要序列化的字段上加上这个注解，即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonSerialize</span>(using = CustomDateTimeSerializer.class)</span><br><span class="line"> <span class="keyword">private</span> Date createTime;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+      <ul class="post-copyright">
+        <li class="post-copyright-author">
+            <strong>本文作者：</strong>onlyxx
+        </li>
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="/posts/ae46bb1a.html" title="在JavaSpring boot项目中时区问题的解决">posts/ae46bb1a.html</a>
+        </li>
+        <li class="post-copyright-license">
+          <strong>版权： </strong>
+          本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+        </li>
+      </ul>
+     
+    </div>
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/技术/" rel="tag"># 技术</a>
+          
+            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/1c46d723.html" rel="next" title="为Sublime Text 3设置http代理">
+                <i class="fa fa-chevron-left"></i> 为Sublime Text 3设置http代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -597,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么写"><span class="nav-number">1.</span> <span class="nav-text">为什么写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想成为"><span class="nav-number">2.</span> <span class="nav-text">想成为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写什么"><span class="nav-number">3.</span> <span class="nav-text">写什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于我"><span class="nav-number">4.</span> <span class="nav-text">关于我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入"><span class="nav-number">2.</span> <span class="nav-text">写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
 
           </div>
@@ -757,9 +885,9 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = "https://blog.zzl.ink/about/index.html";
-    this.page.identifier = "about/index.html";
-    this.page.title = '要找我吗';
+    this.page.url = "https://blog.zzl.ink/posts/ae46bb1a.html";
+    this.page.identifier = "posts/ae46bb1a.html";
+    this.page.title = '在JavaSpring boot项目中时区问题的解决';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');
