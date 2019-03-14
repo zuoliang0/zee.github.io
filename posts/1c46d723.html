@@ -105,20 +105,18 @@
 
 
 
-  <meta name="description" content="导言最近在使用Sublime Text 3是发现其中的package control无法下载插件，经测试需要番茄才行。这里记录一下配置的方法 设置路径  mac的Shadowsocket的默认http端口是1087 12&quot;http_proxy&quot;: &quot;http://127.0.0.1:1087&quot;,&quot;https_proxy&quot;: &quot;https://127.0.0.1:1087&quot; 参考链接： 通过将SOC">
+  <meta name="description" content="导言接入paypal之后发现存的交易id无法方便财务对账，经过一番研究发现其财务看到的交易id实际上是financial transactions 获取方法 12345List&amp;lt;RelatedResources&amp;gt; resourcesList = transaction.getRelatedResources();             String transationId=paym">
 <meta name="keywords" content="问题记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为Sublime Text 3设置http代理">
 <meta property="og:url" content="https://blog.zzl.ink/posts/1c46d723.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="导言最近在使用Sublime Text 3是发现其中的package control无法下载插件，经测试需要番茄才行。这里记录一下配置的方法 设置路径  mac的Shadowsocket的默认http端口是1087 12&quot;http_proxy&quot;: &quot;http://127.0.0.1:1087&quot;,&quot;https_proxy&quot;: &quot;https://127.0.0.1:1087&quot; 参考链接： 通过将SOC">
+<meta property="og:description" content="导言接入paypal之后发现存的交易id无法方便财务对账，经过一番研究发现其财务看到的交易id实际上是financial transactions 获取方法 12345List&amp;lt;RelatedResources&amp;gt; resourcesList = transaction.getRelatedResources();             String transationId=paym">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://wx3.sinaimg.cn/large/c5c35604gy1g0dtjx7xfsj20yg0gen4o.jpg">
-<meta property="og:updated_time" content="2019-02-21T02:20:21.966Z">
+<meta property="og:updated_time" content="2019-03-14T13:00:00.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为Sublime Text 3设置http代理">
-<meta name="twitter:description" content="导言最近在使用Sublime Text 3是发现其中的package control无法下载插件，经测试需要番茄才行。这里记录一下配置的方法 设置路径  mac的Shadowsocket的默认http端口是1087 12&quot;http_proxy&quot;: &quot;http://127.0.0.1:1087&quot;,&quot;https_proxy&quot;: &quot;https://127.0.0.1:1087&quot; 参考链接： 通过将SOC">
-<meta name="twitter:image" content="https://wx3.sinaimg.cn/large/c5c35604gy1g0dtjx7xfsj20yg0gen4o.jpg">
+<meta name="twitter:description" content="导言接入paypal之后发现存的交易id无法方便财务对账，经过一番研究发现其财务看到的交易id实际上是financial transactions 获取方法 12345List&amp;lt;RelatedResources&amp;gt; resourcesList = transaction.getRelatedResources();             String transationId=paym">
 
 
 
@@ -404,12 +402,24 @@
                 
               
 
-              <time title="创建时间：2019-02-21 09:18:00 / 修改时间：10:20:21" itemprop="dateCreated datePublished" datetime="2019-02-21T09:18:00+08:00">2019-02-21</time>
+              <time title="创建时间：2019-02-21 09:18:00" itemprop="dateCreated datePublished" datetime="2019-02-21T09:18:00+08:00">2019-02-21</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 21:00:00" itemprop="dateModified" datetime="2019-03-14T21:00:00+08:00">2019-03-14</time>
               
             
           </span>
@@ -471,12 +481,9 @@
       
 
       
-        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近在使用<code>Sublime Text 3</code>是发现其中的package control无法下载插件，经测试需要番茄才行。这里记录一下配置的方法</p>
-<p>设置路径<br><img src="https://wx3.sinaimg.cn/large/c5c35604gy1g0dtjx7xfsj20yg0gen4o.jpg" alt="描述" title="远程调用"></p>
-<p> mac的<code>Shadowsocket</code>的默认http端口是1087<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"http_proxy"</span>: <span class="string">"http://127.0.0.1:1087"</span>,</span><br><span class="line"><span class="string">"https_proxy"</span>: <span class="string">"https://127.0.0.1:1087"</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><ol>
-<li><a href="http://aes.jypc.org/?p=7612" target="_blank" rel="noopener">通过将SOCKS代理转HTTP解决Sublime Text 3无法安装插件问题</a>   </li>
-</ol>
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>接入paypal之后发现存的交易id无法方便财务对账，经过一番研究发现其财务看到的交易id实际上是<code>financial transactions</code></p>
+<p>获取方法<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;RelatedResources&gt; resourcesList = transaction.getRelatedResources();</span><br><span class="line">             String transationId=paymentId;<span class="comment">//这个就是交易流水了</span></span><br><span class="line">             <span class="keyword">if</span> (resourcesList != <span class="keyword">null</span>) &#123;</span><br><span class="line">                 transationId=resourcesList.get(<span class="number">0</span>).getSale().getId();</span><br><span class="line">             &#125;</span><br></pre></td></tr></table></figure></p>
+<p> 将查出来的<code>transationId</code>存到数据库即可。</p>
 
       
     </div>
@@ -541,8 +548,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/ae46bb1a.html" rel="prev" title="在JavaSpring boot项目中时区问题的解决">
-                在JavaSpring boot项目中时区问题的解决 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/1c46d723.html" rel="prev" title="为Sublime Text 3设置http代理">
+                为Sublime Text 3设置http代理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +629,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -729,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">2.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li></ol></div>
             
 
           </div>
