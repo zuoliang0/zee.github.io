@@ -105,25 +105,27 @@
 
 
 
-  <meta name="description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
-<meta name="keywords" content="java,技术,Springboot">
+  <meta name="description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
+<meta name="keywords" content="技术,帆软相关,帆软二开">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Spring boot项目中时区问题的解决">
-<meta property="og:url" content="https://blog.zzl.ink/posts/ae46bb1a.html">
+<meta property="og:title" content="FR9.0实现图片上传">
+<meta property="og:url" content="https://blog.zzl.ink/posts/e7a3ce3e.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
+<meta property="og:description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-04T02:02:26.911Z">
+<meta property="og:image" content="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg">
+<meta property="og:updated_time" content="2019-04-04T02:09:11.138Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Spring boot项目中时区问题的解决">
-<meta name="twitter:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
+<meta name="twitter:title" content="FR9.0实现图片上传">
+<meta name="twitter:description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
+<meta name="twitter:image" content="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/posts/ae46bb1a.html">
+  <link rel="canonical" href="https://blog.zzl.ink/posts/e7a3ce3e.html">
 
 
 
@@ -133,7 +135,7 @@
   };
 </script>
 
-  <title>在Spring boot项目中时区问题的解决 | 左良 | Sean's Blog</title>
+  <title>FR9.0实现图片上传 | 左良 | Sean's Blog</title>
   
 
 
@@ -359,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/ae46bb1a.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/e7a3ce3e.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="onlyxx">
@@ -376,7 +378,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在Spring boot项目中时区问题的解决
+          <h2 class="post-title" itemprop="name headline">FR9.0实现图片上传
 
               
             
@@ -402,7 +404,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 13:18:27" itemprop="dateCreated datePublished" datetime="2019-03-08T13:18:27+08:00">2019-03-08</time>
+              <time title="创建时间：2019-03-22 11:18:00" itemprop="dateCreated datePublished" datetime="2019-03-22T11:18:00+08:00">2019-03-22</time>
             
 
             
@@ -419,7 +421,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-04 10:02:26" itemprop="dateModified" datetime="2019-04-04T10:02:26+08:00">2019-04-04</time>
+                <time title="修改时间：2019-04-04 10:09:11" itemprop="dateModified" datetime="2019-04-04T10:09:11+08:00">2019-04-04</time>
               
             
           </span>
@@ -436,7 +438,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/解决问题/" itemprop="url" rel="index"><span itemprop="name">解决问题</span></a></span>
 
                 
                 
@@ -451,9 +453,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/ae46bb1a.html#comments" itemprop="discussionUrl">
+                <a href="/posts/e7a3ce3e.html#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/ae46bb1a.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/e7a3ce3e.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -476,16 +478,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=bbvusjtb" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=dqdy85oe" title="今日诗词">
       
       
 
       
-        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。</p>
-<h2 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h2><p>数据写入的时候需要把时区设置为0时区。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXApplication</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置时区为0时区</span></span><br><span class="line">	<span class="meta">@PostConstruct</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">started</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		TimeZone.setDefault(TimeZone.getTimeZone(<span class="string">"UTC"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//省略main方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在后台使用是使用的Jackson库来序列化<br>并且我么能使用了自定义序列化，所以只需在DateFormat的时候统一指定GMT+8 即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDateTimeSerializer</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Date</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException, JsonProcessingException </span>&#123;</span><br><span class="line">        SimpleDateFormat formatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="comment">//这里很关键，别写错了</span></span><br><span class="line">        formatter.setTimeZone(TimeZone.getTimeZone(<span class="string">"GMT+8"</span>));</span><br><span class="line">        String formattedDate = formatter.format(date);</span><br><span class="line">        jsonGenerator.writeString(formattedDate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在需要序列化的字段上加上这个注解，即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonSerialize</span>(using = CustomDateTimeSerializer.class)</span><br><span class="line"> <span class="keyword">private</span> Date createTime;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。</p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>使用方法如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FR.showUploadDialog(&#123;</span><br><span class="line">                url: FR.servletURL + <span class="string">"?op=fr_attach&amp;cmd=ah_upload"</span>,</span><br><span class="line">                allowTypes: <span class="string">""</span>,</span><br><span class="line">                err: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.info(e)</span><br><span class="line">                    FR.Msg.toast(<span class="string">"文件上传失败"</span> + e.responseText);</span><br><span class="line">                &#125;,</span><br><span class="line">                callback: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(e.responseText);</span><br><span class="line">                    <span class="comment">//访问urlhttp://localhost:8075/WebReport/ReportServer?op=fr_attach&amp;cmd=ah_image&amp;id=8347221a-72d4-443f-914b-e69385f20c0d&amp;isAdjust=false</span></span><br><span class="line">                    <span class="comment">//响应格式&#123;"attach_type":"image","filename":"bixiaob.png","attach_id":"349b5b4d-4c69-44b9-acc1-94be78e89552"&#125;"</span></span><br><span class="line">                    <span class="keyword">var</span> url = FR.servletURL + <span class="string">"?op=fr_attach&amp;cmd=ah_image&amp;isAdjust=false&amp;id="</span> + json.attach_id;</span><br><span class="line">                    <span class="built_in">console</span>.info(<span class="string">"图片上传成功："</span>+url);</span><br><span class="line">                    <span class="keyword">if</span> (url) &#123;</span><br><span class="line">                    	<span class="comment">//处理业务</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                autoUpload: <span class="literal">false</span>,</span><br><span class="line">                beforeAction: FR.emptyFn,</span><br><span class="line">                afterAction: FR.emptyFn</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>效果如图<br><img src="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg" alt="" title="效果图"></p>
 
       
     </div>
@@ -515,7 +515,7 @@
         </li>
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="/posts/ae46bb1a.html" title="在Spring boot项目中时区问题的解决">posts/ae46bb1a.html</a>
+          <a href="/posts/e7a3ce3e.html" title="FR9.0实现图片上传">posts/e7a3ce3e.html</a>
         </li>
         <li class="post-copyright-license">
           <strong>版权： </strong>
@@ -527,11 +527,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
             <a href="/tags/技术/" rel="tag"># 技术</a>
           
-            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+            <a href="/tags/帆软相关/" rel="tag"># 帆软相关</a>
+          
+            <a href="/tags/帆软二开/" rel="tag"># 帆软二开</a>
           
         </div>
       
@@ -544,8 +544,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/1c46d723.html" rel="next" title="为Sublime Text 3设置http代理">
-                <i class="fa fa-chevron-left"></i> 为Sublime Text 3设置http代理
+              <a href="/posts/ae46bb1a.html" rel="next" title="在Spring boot项目中时区问题的解决">
+                <i class="fa fa-chevron-left"></i> 在Spring boot项目中时区问题的解决
               </a>
             
           </div>
@@ -554,8 +554,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/e7a3ce3e.html" rel="prev" title="FR9.0实现图片上传">
-                FR9.0实现图片上传 <i class="fa fa-chevron-right"></i>
+              <a href="/posts/fe4572b.html" rel="prev" title="FR9.0的已知后台widget及用法">
+                FR9.0的已知后台widget及用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -750,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入"><span class="nav-number">2.</span> <span class="nav-text">写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-number">2.</span> <span class="nav-text">文件上传</span></a></li></ol></div>
             
 
           </div>
@@ -910,9 +910,9 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = "https://blog.zzl.ink/posts/ae46bb1a.html";
-    this.page.identifier = "posts/ae46bb1a.html";
-    this.page.title = '在Spring boot项目中时区问题的解决';
+    this.page.url = "https://blog.zzl.ink/posts/e7a3ce3e.html";
+    this.page.identifier = "posts/e7a3ce3e.html";
+    this.page.title = 'FR9.0实现图片上传';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');
