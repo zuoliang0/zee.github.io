@@ -105,25 +105,25 @@
 
 
 
-  <meta name="description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
-<meta name="keywords" content="java,技术,Springboot">
+  <meta name="description" content="导言写帆软的二开插件的时候通常会遇到很多要写配置的情况，但是fr官方并没有提供和完善的文档来描述具体有多少类型的widget可以使用，通过很多次二开，搜集了一些9.0的可以用widget，在这里做一些总结。 控件列表文本框控件用于输入文本1&amp;#123;type: &apos;text&apos;, widgetName: &apos;widgetName&apos;,watermark:&quot;水印 placeholder&quot;,value:&quot;默">
+<meta name="keywords" content="帆软,帆软二次开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在JavaSpring boot项目中时区问题的解决">
-<meta property="og:url" content="https://blog.zzl.ink/posts/ae46bb1a.html">
+<meta property="og:title" content="FR9.0的已知后台widget及用法">
+<meta property="og:url" content="https://blog.zzl.ink/posts/fe4572b.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
+<meta property="og:description" content="导言写帆软的二开插件的时候通常会遇到很多要写配置的情况，但是fr官方并没有提供和完善的文档来描述具体有多少类型的widget可以使用，通过很多次二开，搜集了一些9.0的可以用widget，在这里做一些总结。 控件列表文本框控件用于输入文本1&amp;#123;type: &apos;text&apos;, widgetName: &apos;widgetName&apos;,watermark:&quot;水印 placeholder&quot;,value:&quot;默">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-08T08:49:42.363Z">
+<meta property="og:updated_time" content="2019-04-04T01:36:09.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在JavaSpring boot项目中时区问题的解决">
-<meta name="twitter:description" content="导言最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。 写入数据写入的时候需要把时区设置为0时区。 123456789@SpringBootApplicationpublic class XXApplication &amp;#123;	//设置时区为0时区	@PostConstruct	void started() &amp;#12">
+<meta name="twitter:title" content="FR9.0的已知后台widget及用法">
+<meta name="twitter:description" content="导言写帆软的二开插件的时候通常会遇到很多要写配置的情况，但是fr官方并没有提供和完善的文档来描述具体有多少类型的widget可以使用，通过很多次二开，搜集了一些9.0的可以用widget，在这里做一些总结。 控件列表文本框控件用于输入文本1&amp;#123;type: &apos;text&apos;, widgetName: &apos;widgetName&apos;,watermark:&quot;水印 placeholder&quot;,value:&quot;默">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/posts/ae46bb1a.html">
+  <link rel="canonical" href="https://blog.zzl.ink/posts/fe4572b.html">
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>在JavaSpring boot项目中时区问题的解决 | 左良 | Sean's Blog</title>
+  <title>FR9.0的已知后台widget及用法 | 左良 | Sean's Blog</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/ae46bb1a.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/fe4572b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="onlyxx">
@@ -376,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在JavaSpring boot项目中时区问题的解决
+          <h2 class="post-title" itemprop="name headline">FR9.0的已知后台widget及用法
 
               
             
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 13:18:27 / 修改时间：16:49:42" itemprop="dateCreated datePublished" datetime="2019-03-08T13:18:27+08:00">2019-03-08</time>
+              <time title="创建时间：2019-04-04 09:18:27 / 修改时间：09:36:09" itemprop="dateCreated datePublished" datetime="2019-04-04T09:18:27+08:00">2019-04-04</time>
             
 
             
@@ -439,9 +439,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/ae46bb1a.html#comments" itemprop="discussionUrl">
+                <a href="/posts/fe4572b.html#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/ae46bb1a.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/fe4572b.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -469,11 +469,13 @@
       
 
       
-        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近公司开始弄国外项目，后来发现数据时间不对，我开始以为是默认的utc0时区，后来发现实际上是服务器时区。通过查资料终于时区问题。</p>
-<h2 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h2><p>数据写入的时候需要把时区设置为0时区。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXApplication</span> </span>&#123;</span><br><span class="line">	<span class="comment">//设置时区为0时区</span></span><br><span class="line">	<span class="meta">@PostConstruct</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">started</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		TimeZone.setDefault(TimeZone.getTimeZone(<span class="string">"UTC"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//省略main方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在后台使用是使用的Jackson库来序列化<br>并且我么能使用了自定义序列化，所以只需在DateFormat的时候统一指定GMT+8 即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDateTimeSerializer</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Date</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException, JsonProcessingException </span>&#123;</span><br><span class="line">        SimpleDateFormat formatter = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">        <span class="comment">//这里很关键，别写错了</span></span><br><span class="line">        formatter.setTimeZone(TimeZone.getTimeZone(<span class="string">"GMT+8"</span>));</span><br><span class="line">        String formattedDate = formatter.format(date);</span><br><span class="line">        jsonGenerator.writeString(formattedDate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在需要序列化的字段上加上这个注解，即可<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonSerialize</span>(using = CustomDateTimeSerializer.class)</span><br><span class="line"> <span class="keyword">private</span> Date createTime;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>写帆软的二开插件的时候通常会遇到很多要写配置的情况，但是fr官方并没有提供和完善的文档来描述具体有多少类型的widget可以使用，通过很多次二开，搜集了一些9.0的可以用widget，在这里做一些总结。</p>
+<h2 id="控件列表"><a href="#控件列表" class="headerlink" title="控件列表"></a>控件列表</h2><h3 id="文本框控件"><a href="#文本框控件" class="headerlink" title="文本框控件"></a>文本框控件</h3><p>用于输入文本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">type</span>: <span class="string">'text'</span>, <span class="attr">widgetName</span>: <span class="string">'widgetName'</span>,<span class="attr">watermark</span>:<span class="string">"水印 placeholder"</span>,<span class="attr">value</span>:<span class="string">"默认值"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="标签控件"><a href="#标签控件" class="headerlink" title="标签控件"></a>标签控件</h3><p>显示标签文本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">type</span>: <span class="string">'llabel'</span>, <span class="attr">value</span>: <span class="string">"显示内容"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="按钮控件"><a href="#按钮控件" class="headerlink" title="按钮控件"></a>按钮控件</h3><p>按钮<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">  type: <span class="string">'quickbutton'</span>,</span><br><span class="line">  widgetName: <span class="string">'widgetName'</span>,</span><br><span class="line">  text:<span class="string">"显示内容"</span>,</span><br><span class="line">  handler: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="comment">//click 处理函数</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="时间日期选择器"><a href="#时间日期选择器" class="headerlink" title="时间日期选择器"></a>时间日期选择器</h3><p>可以设置选择时间还是选择日期<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: <span class="string">'datetime'</span>,</span><br><span class="line">  widgetName: <span class="string">'widgetName'</span>,</span><br><span class="line">  watermark:<span class="string">"默认无限制"</span>,</span><br><span class="line">  format: <span class="string">"yyyy-MM-dd HH:mm:ss"</span>,</span><br><span class="line">  invisible: <span class="literal">false</span>,<span class="comment">//是否不可见</span></span><br><span class="line">  disabled: <span class="literal">false</span>,<span class="comment">//禁用</span></span><br><span class="line">  directEdit: <span class="literal">true</span><span class="comment">//是否需要添加选择按钮</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="下拉选择框"><a href="#下拉选择框" class="headerlink" title="下拉选择框"></a>下拉选择框</h3><p>下拉选择框控件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    type: <span class="string">'combo'</span>,</span><br><span class="line">    supportTag: <span class="literal">false</span>,</span><br><span class="line">    delimiter: <span class="string">"|"</span>,</span><br><span class="line">    widgetName: <span class="string">"sel_tpl"</span>,</span><br><span class="line">    isVisible: <span class="literal">true</span>,</span><br><span class="line">    height: <span class="number">21</span>,</span><br><span class="line">    width: <span class="number">200</span>,</span><br><span class="line">    widgetUrl: FR.servletURL+<span class="string">"?op=fr_schedule&amp;cmd=get_user_grp&amp;optype=platform&amp;reload=true&amp;limitIndex=500&amp;startIndex"</span>,</span><br><span class="line">    <span class="comment">//这个表示数据从哪个接口取出来，需要返回text，value//items表示本地获取数据，写死的选择类型items: [</span></span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="string">"图文"</span>,</span><br><span class="line">            value: <span class="number">0</span>,</span><br><span class="line">            select: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="string">"纯图"</span>,</span><br><span class="line">            value: <span class="number">1</span></span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">    ],</span><br><span class="line">    listeners: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//事件列表eventName: 'afteredit',</span></span><br><span class="line">            action: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="comment">//选中项改变的事件</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="选择框"><a href="#选择框" class="headerlink" title="选择框"></a>选择框</h3><p>多选框控件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    type: <span class="string">'checkbox'</span>,</span><br><span class="line">    text: <span class="string">"显示内容"</span>,</span><br><span class="line">    widgetName: <span class="string">'widgetName'</span>,</span><br><span class="line">    height: <span class="number">18</span>,</span><br><span class="line">    width: <span class="number">100</span>,</span><br><span class="line">    value: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">//选中值items: [</span></span><br><span class="line">        &#123;</span><br><span class="line">            text: <span class="string">"图文"</span>,</span><br><span class="line">            value: <span class="number">0</span>,</span><br><span class="line">            select: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">    ]listeners: [</span><br><span class="line">        &#123;</span><br><span class="line">            eventName: <span class="string">'afteredit'</span>,</span><br><span class="line">            action: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="comment">//选中后的事件</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -503,7 +505,7 @@
         </li>
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="/posts/ae46bb1a.html" title="在JavaSpring boot项目中时区问题的解决">posts/ae46bb1a.html</a>
+          <a href="/posts/fe4572b.html" title="FR9.0的已知后台widget及用法">posts/fe4572b.html</a>
         </li>
         <li class="post-copyright-license">
           <strong>版权： </strong>
@@ -515,11 +517,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
+            <a href="/tags/帆软/" rel="tag"># 帆软</a>
           
-            <a href="/tags/技术/" rel="tag"># 技术</a>
-          
-            <a href="/tags/Springboot/" rel="tag"># Springboot</a>
+            <a href="/tags/帆软二次开发/" rel="tag"># 帆软二次开发</a>
           
         </div>
       
@@ -541,10 +541,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/1c46d723.html" rel="prev" title="为Sublime Text 3设置http代理">
-                为Sublime Text 3设置http代理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -736,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入"><span class="nav-number">2.</span> <span class="nav-text">写入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控件列表"><span class="nav-number">2.</span> <span class="nav-text">控件列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本框控件"><span class="nav-number">2.1.</span> <span class="nav-text">文本框控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签控件"><span class="nav-number">2.2.</span> <span class="nav-text">标签控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按钮控件"><span class="nav-number">2.3.</span> <span class="nav-text">按钮控件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间日期选择器"><span class="nav-number">2.4.</span> <span class="nav-text">时间日期选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下拉选择框"><span class="nav-number">2.5.</span> <span class="nav-text">下拉选择框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择框"><span class="nav-number">2.6.</span> <span class="nav-text">选择框</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -896,9 +892,9 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = "https://blog.zzl.ink/posts/ae46bb1a.html";
-    this.page.identifier = "posts/ae46bb1a.html";
-    this.page.title = '在JavaSpring boot项目中时区问题的解决';
+    this.page.url = "https://blog.zzl.ink/posts/fe4572b.html";
+    this.page.identifier = "posts/fe4572b.html";
+    this.page.title = 'FR9.0的已知后台widget及用法';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');
