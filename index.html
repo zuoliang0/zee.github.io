@@ -358,6 +358,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/82e18d4.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/82e18d4.html" class="post-title-link" itemprop="url">centos 7 安装 Jenkins</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-11 14:18:27 / 修改时间：13:50:31" itemprop="dateCreated datePublished" datetime="2019-04-11T14:18:27+08:00">2019-04-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/82e18d4.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/82e18d4.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=m67ycjbd" title="今日诗词">
+      
+      
+
+      
+        
+          
+            <h2 id="前序"><a href="#前序" class="headerlink" title="前序"></a>前序</h2><p>最近公司又买了一台服务器，正好需要搭建jenkins 在这里记录一下。</p>
+<h2 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h2><ol>
+<li>安装jdk 1.8<br><code>sudo yum install java-1.8.0-openjdk-devel</code></li>
+<li><p>添加jenkins的centos源</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo</span><br><span class="line">sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装<br><code>sudo yum install jenkins</code></p>
+</li>
+<li>启动<br><code>sudo systemctl start jenkins</code></li>
+</ol>
+<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><p>添加防火墙<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
+<p>无法启动</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@iZuf6jb2xioncu2rm8h8utZ conf]<span class="comment"># systemctl status jenkins.service</span></span><br><span class="line">● jenkins.service - LSB: Jenkins Automation Server</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/jenkins; bad; vendor preset: disabled)</span><br><span class="line">   Active: failed (Result: <span class="built_in">exit</span>-code) since Thu 2019-04-11 13:07:24 CST; 12s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 4092 ExecStart=/etc/rc.d/init.d/jenkins start (code=exited, status=1/FAILURE)</span><br><span class="line"></span><br><span class="line">Apr 11 13:07:24 iZuf6jb2xioncu2rm8h8utZ systemd[1]: Starting LSB: Jenkins Automation Server...</span><br><span class="line">Apr 11 13:07:24 iZuf6jb2xioncu2rm8h8utZ runuser[4097]: pam_unix(runuser:session): session opened <span class="keyword">for</span> user jenkins by (uid=0)</span><br><span class="line">Apr 11 13:07:24 iZuf6jb2xioncu2rm8h8utZ jenkins[4092]: Starting Jenkins bash: /usr/bin/java: No such file or directory</span><br><span class="line">Apr 11 13:07:24 iZuf6jb2xioncu2rm8h8utZ runuser[4097]: pam_unix(runuser:session): session closed <span class="keyword">for</span> user jenkins</span><br></pre></td></tr></table></figure>
+<p>这是因为jenkins自动搜索jdk没找到的原因<br>首先你要找到你的jdk_home<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@iZuf6jb2xioncu2rm8h8utZ conf]<span class="comment">#  echo $JAVA_HOME</span></span><br><span class="line">/usr/java/jdk1.8.0_202</span><br></pre></td></tr></table></figure></p>
+<p> 然后将这个jdk路径加上/bin/java添加到candidates中</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/jenkins</span><br></pre></td></tr></table></figure>
+<p>修改之后<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># see http://www.nabble.com/guinea-pigs-wanted-----Hudson-RPM-for-RedHat-Linux-td25673707.html</span></span><br><span class="line">candidates=<span class="string">"</span></span><br><span class="line"><span class="string">/usr/java/jdk1.8.0_202/bin/java</span></span><br><span class="line"><span class="string">/etc/alternatives/java</span></span><br><span class="line"><span class="string">/usr/lib/jvm/java-1.8.0/bin/java</span></span><br><span class="line"><span class="string">/usr/lib/jvm/jre-1.8.0/bin/java</span></span><br><span class="line"><span class="string">/usr/lib/jvm/java-1.7.0/bin/java</span></span><br><span class="line"><span class="string">/usr/lib/jvm/jre-1.7.0/bin/java</span></span><br><span class="line"><span class="string">/usr/bin/java</span></span><br><span class="line"><span class="string">"</span></span><br></pre></td></tr></table></figure></p>
+<p> 最后刷新一下systemctl</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a href="https://linuxize.com/post/how-to-install-jenkins-on-centos-7/" target="_blank" rel="noopener">https://linuxize.com/post/how-to-install-jenkins-on-centos-7/</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/fe4572b.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -465,7 +661,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=2vx5x91l" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=9yrj7o7y" title="今日诗词">
       
       
 
@@ -661,7 +857,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=gcnp9hto" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=fwymcwbe" title="今日诗词">
       
       
 
@@ -850,7 +1046,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=t3cm2g1p" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ova3l8wf" title="今日诗词">
       
       
 
@@ -1041,7 +1237,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=cehcql7r" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=bq1a0pds" title="今日诗词">
       
       
 
@@ -1233,7 +1429,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=s72owm8m" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=2nheutt5" title="今日诗词">
       
       
 
@@ -1422,7 +1618,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ux4y7vda" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=fj5293wp" title="今日诗词">
       
       
 
@@ -1634,7 +1830,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=s9ipd1l2" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=dseqh8af" title="今日诗词">
       
       
 
@@ -1838,7 +2034,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=q2k1w37s" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=99fjj03o" title="今日诗词">
       
       
 
@@ -2043,7 +2239,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=1ffzoetv" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=5penp6jk" title="今日诗词">
       
       
 
@@ -2057,188 +2253,6 @@
 <p>如果你的网站是放在一个子目录里面的，还需要修改网站的<code>_config.yml</code>的配置<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># favicon config</span></span><br><span class="line"><span class="comment">## Place your favicon.ico to /source directory</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">/your</span> <span class="string">dir/favicon.png</span></span><br></pre></td></tr></table></figure></p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/3f29856e.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/3f29856e.html" class="post-title-link" itemprop="url">Nginx配置转发规则</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-21 13:18:27 / 修改时间：14:07:37" itemprop="dateCreated datePublished" datetime="2019-01-21T13:18:27+08:00">2019-01-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/3f29856e.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/3f29856e.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=jubvnm1g" title="今日诗词">
-      
-      
-
-      
-        
-          <h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>今天工作的时候涉及到一个内网的接口隐射到外网接口的问题，正好就记录一下</p>
-<h2 id="location正则写法"><a href="#location正则写法" class="headerlink" title="location正则写法"></a>location正则写法</h2>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/3f29856e.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2331,7 +2345,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2395,7 +2409,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
