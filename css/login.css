@@ -1,0 +1,19 @@
+/* 二维码外框大小 */
+.wrp_code{
+    width: 100px;
+    height: 100px;
+}
+/*二维码图片大小*/
+.impowerBox .qrcode{
+    width: 100px;
+}
+/*背景颜色*/
+body{
+    background-color: white !important;
+}
+.title{
+    display: none;
+}
+.info{
+    display: none;
+}
