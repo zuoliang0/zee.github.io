@@ -358,6 +358,378 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/f804239d.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/f804239d.html" class="post-title-link" itemprop="url">centos实现代理和番镪</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 18:18:00 / 修改时间：18:23:04" itemprop="dateCreated datePublished" datetime="2019-04-29T18:18:00+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f804239d.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/f804239d.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=hbgbchc8" title="今日诗词">
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为公司的测试服务器需要访问国外的paypal，如果不fangqiang 虽然能访问但是非常的慢。<br>找了一些教程实现了一个自动化fanq</p>
+<h2 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install python-pip</span><br><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
+<p>安装完成之后写一个配置文件，<code>/etc/shadowsocks.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>:<span class="string">"your_server_ip"</span>,</span><br><span class="line">    <span class="attr">"server_port"</span>:<span class="number">443</span>,</span><br><span class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</span><br><span class="line">    <span class="attr">"password"</span>:<span class="string">"your_server_passwd"</span>,</span><br><span class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,    </span><br><span class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span>,         </span><br><span class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span>,         </span><br><span class="line">    <span class="attr">"workers"</span>: <span class="number">1</span>                </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/f804239d.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/7ede6e9f.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/7ede6e9f.html" class="post-title-link" itemprop="url">动态修改java类 并实现热部署</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 18:18:00 / 修改时间：18:22:41" itemprop="dateCreated datePublished" datetime="2019-04-29T18:18:00+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/解决问题/" itemprop="url" rel="index"><span itemprop="name">解决问题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/7ede6e9f.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/7ede6e9f.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=9ju55vqk" title="今日诗词">
+      
+      
+
+      
+        
+          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近学习了使用<code>Arthas</code> 这个工具，被其强大功能所折服，不敢私藏，随分享出来给大家一起学习。</p>
+<h2 id="Arthas介绍"><a href="#Arthas介绍" class="headerlink" title="Arthas介绍"></a>Arthas介绍</h2><p><img src="https://alibaba.github.io/arthas/_images/arthas.png" alt="" title="logo"></p>
+<p>Arthas 是Alibaba开源的Java诊断工具，深受开发者喜爱。在线排查问题，无需重启；动态跟踪Java代码；实时监控JVM状态。<br>Arthas 支持JDK 6+，支持Linux/Mac/Windows，采用命令行交互模式，同时提供 Tab 自动补全功能，进一步方便进行问题的定位和诊断。</p>
+<h2 id="常用功能"><a href="#常用功能" class="headerlink" title="常用功能"></a>常用功能</h2><ol>
+<li>查看这个类是从哪儿来的</li>
+<li>监控jvm状态</li>
+<li>线上死锁处理</li>
+<li>代码热更新
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/7ede6e9f.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/82e18d4.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -465,7 +837,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=v2em7rir" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ft07k1ku" title="今日诗词">
       
       
 
@@ -661,7 +1033,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=0e1k5rn9" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=xlru6m2k" title="今日诗词">
       
       
 
@@ -857,7 +1229,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=e86j78ee" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ogbx5dhq" title="今日诗词">
       
       
 
@@ -1046,7 +1418,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=e0beypqk" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=46zdytwi" title="今日诗词">
       
       
 
@@ -1237,7 +1609,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=rw79kksj" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=sjvebukp" title="今日诗词">
       
       
 
@@ -1429,7 +1801,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=vb2e1ktr" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=x9hx47g5" title="今日诗词">
       
       
 
@@ -1618,7 +1990,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=l34dgc1o" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ibjrixqn" title="今日诗词">
       
       
 
@@ -1830,7 +2202,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=p88gxt8f" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=03ho8ej2" title="今日诗词">
       
       
 
@@ -1900,407 +2272,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6558eb68.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/6558eb68.html" class="post-title-link" itemprop="url">SAP BW获取数据</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-22 09:18:00" itemprop="dateCreated datePublished" datetime="2019-01-22T09:18:00+08:00">2019-01-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-04 10:05:33" itemprop="dateModified" datetime="2019-04-04T10:05:33+08:00">2019-04-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/解决问题/" itemprop="url" rel="index"><span itemprop="name">解决问题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/6558eb68.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/6558eb68.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ee9croi5" title="今日诗词">
-      
-      
-
-      
-        
-          <p>使用RRW3_GET_QUERY_VIEW_DATA</p>
-<h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>最近在开发一个通过sqbbw jco取数的插件，其中核心部分就是使用<code>RRW3_GET_QUERY_VIEW_DATA</code> 来读取query desinger中的数据<br>You set default variables by parameterizing the URL. The variable values are separated from each other by different indexes.  The index in the parameter is indicated in the following by <code>_I</code>.</p>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p> 传入参数如下</p>
-<p> <code>I_INFOPROVIDER</code>      “信息提供商<br> <code>I_QUERY</code>             “QUERY名称<br> <code>I_VIEW_ID</code>           “可有可无<br> <code>I_T_PARAMETER</code>       “参数列表</p>
-<p> <code>I_T_PARAMETER</code> 参数列表相应格式如下</p>
-<h3 id="Characteristic-Value-Variables"><a href="#Characteristic-Value-Variables" class="headerlink" title="Characteristic Value Variables"></a>Characteristic Value Variables</h3><p> <strong> 特征值变量 </strong></p>
-<p> Parameter variables or variables for several single values are predefined as follows:<br> 对于单值性的变量使用以下形式：</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>  VAR_NAME_I </strong></td>
-<td><strong>     Technical name of the variables </strong></td>
-</tr>
-<tr>
-<td><strong> VAR_VALUE_EXT_I </strong></td>
-<td><strong> Attribute value in external display </strong> Key for characteristic value in external display</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/6558eb68.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/60f5dd3.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/60f5dd3.html" class="post-title-link" itemprop="url">Hexo设置 favicon</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-21 14:18:00 / 修改时间：14:35:57" itemprop="dateCreated datePublished" datetime="2019-01-21T14:18:00+08:00">2019-01-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/解决问题/" itemprop="url" rel="index"><span itemprop="name">解决问题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/60f5dd3.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/60f5dd3.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=q3xfi5yt" title="今日诗词">
-      
-      
-
-      
-        
-          
-            <h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>当浏览器加载一个页面的时候，会默认从该网站的根目录下查找<code>favicon.ico</code>，<br>例如你的网站是<a href="http://www.xxx.com，则默认会查找`www.xxx.com/favicon.ico`文件，" target="_blank" rel="noopener">www.xxx.com，则默认会查找`www.xxx.com/favicon.ico`文件，</a><br>但是注意，如果你的网站是在某个子目录下，例如：<a href="http://www.xxx.com/blog/，那浏览器还是会去这个地址www.xxx.com/favicon.ico找favicon.icon的。" target="_blank" rel="noopener">www.xxx.com/blog/，那浏览器还是会去这个地址www.xxx.com/favicon.ico找favicon.icon的。</a></p>
-<p>推荐一个在线制作favicon的网站<a href="https://tool.lu/favicon/" target="_blank" rel="noopener">https://tool.lu/favicon/</a></p>
-<p>将<code>favicon</code>图标 放到<code>./source</code>目录下</p>
-<p>如果你使用的next主题还需要修改主题配置文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">favicon:</span></span><br><span class="line"><span class="attr">  small:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  medium:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  apple_touch_icon:</span> <span class="string">/favicon.ico</span></span><br><span class="line"><span class="attr">  safari_pinned_tab:</span> <span class="string">/favicon.ico</span></span><br><span class="line">  <span class="comment">#android_manifest: /images/manifest.json</span></span><br><span class="line">  <span class="comment">#ms_browserconfig: /images/browserconfig.xml</span></span><br></pre></td></tr></table></figure></p>
-<p>如果你的网站是放在一个子目录里面的，还需要修改网站的<code>_config.yml</code>的配置<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># favicon config</span></span><br><span class="line"><span class="comment">## Place your favicon.ico to /source directory</span></span><br><span class="line"><span class="attr">favicon:</span> <span class="string">/your</span> <span class="string">dir/favicon.png</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2345,7 +2321,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
