@@ -105,24 +105,27 @@
 
 
 
-  <meta name="description" content="write some content">
-<meta name="keywords" content="java jiandaoyun">
+  <meta name="description" content="理论部分要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所">
+<meta name="keywords" content="通信技术,java,基础知识">
 <meta property="og:type" content="website">
-<meta property="og:title" content="左良 | Sean&#39;s Blog">
-<meta property="og:url" content="https://blog.zzl.ink/tags/Nginx/index.html">
+<meta property="og:title" content="java 远程通信技术学习">
+<meta property="og:url" content="https://blog.zzl.ink/java远程通信技术学习.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="write some content">
+<meta property="og:description" content="理论部分要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg">
+<meta property="og:updated_time" content="2019-01-21T06:10:15.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="左良 | Sean&#39;s Blog">
-<meta name="twitter:description" content="write some content">
+<meta name="twitter:title" content="java 远程通信技术学习">
+<meta name="twitter:description" content="理论部分要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/tags/Nginx/">
+  <link rel="canonical" href="https://blog.zzl.ink/java远程通信技术学习.html">
 
 
 
@@ -132,7 +135,7 @@
   };
 </script>
 
-  <title>标签: Nginx | 左良 | Sean's Blog</title>
+  <title>java 远程通信技术学习 | 左良 | Sean's Blog</title>
   
 
 
@@ -185,7 +188,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -261,7 +264,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -363,56 +366,79 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>Nginx<small>标签</small>
-        </h2>
-      </div>
+<h2 class="post-title" itemprop="name headline">java 远程通信技术学习
+
+</h2>
+
+<div class="post-meta">
+  
+  
+
+
+
+</div>
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
         
-          <a class="post-title-link" href="/posts/3f29856e.html" itemprop="url">
-            
-              <span itemprop="name">Nginx配置转发规则</span>
-            
-          </a>
-        
-      </h3>
+          <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所有的分布式应用通讯都基于这个原理而实现，只是为了应用的易用，各种语言通常都会提供一些更为贴近应用易用的应用层协议。</p>
+<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
+<li>传输的标准格式是什么？</li>
+<li>怎么样将请求转化为传输的流？</li>
+<li>怎么接收和处理流？</li>
+<li>怎么接收和处理流？</li>
+</ol>
+<p>在java领域中知名的有：RMI、XML-RPC、Binary-RPC、SOAP、CORBA、JMS</p>
+<h2 id="具体协议"><a href="#具体协议" class="headerlink" title="具体协议"></a>具体协议</h2><h3 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h3><p>RMI是个典型的为java定制的远程通信协议，我们都知道，在单独的jvm中，我们可以通过直接调用对象实例的方式来实现通信。那么在远程通信时，如果也能按照这种方式当然是最好了，这种远程通信的机制成为RPC（Remote Procedure Call）<br><img src="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg" alt="图" title="远程调用"></p>
+<ol>
+<li>传输的标准格式是什么？<br> Java ObjectStream</li>
+<li>怎么样将请求转化为传输的流？</li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###" target="_blank" rel="noopener">https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###</a></p>
+</blockquote>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-21T13:18:27+08:00" content="2019-01-21">
-          01-21
-        </time>
+        
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
+    
 
+
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -433,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -559,6 +594,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论部分"><span class="nav-number">1.</span> <span class="nav-text">理论部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个问题"><span class="nav-number">2.</span> <span class="nav-text">几个问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体协议"><span class="nav-number">3.</span> <span class="nav-text">具体协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RMI"><span class="nav-number">3.1.</span> <span class="nav-text">RMI</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -693,6 +745,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -702,6 +758,30 @@
 
 
   
+  
+    
+  <script id="dsq-count-scr" src="https://zze.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function () {
+    this.page.url = "https://blog.zzl.ink/java远程通信技术学习.html";
+    this.page.identifier = "java远程通信技术学习.html";
+    this.page.title = 'java 远程通信技术学习';
+    };
+  function loadComments () {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://zze.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+  
+
 
 
 

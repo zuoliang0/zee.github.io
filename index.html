@@ -358,6 +358,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/58379b90.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/58379b90.html" class="post-title-link" itemprop="url">解决SpringBoot Mysql Emoji表情 druid hikari</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-13 20:18:27" itemprop="dateCreated datePublished" datetime="2019-06-13T20:18:27+08:00">2019-06-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-14 11:15:03" itemprop="dateModified" datetime="2019-06-14T11:15:03+08:00">2019-06-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/58379b90.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/58379b90.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=pocsm6ui" title="今日诗词">
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>项目中需要支持Emoji表情，但是尝试了很多办法无果后，结合了多个文章后实现了在Springboot项目中使用mysql数据库存储Emoji表情。</p>
+<p>在数据库中存储Emoji需要用utf8mb4编码格式，一般mysql默认的是utf8</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>1.修改表的字符集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span>  <span class="string">`tableName`</span> <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<p>2.修改字段字符集<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_chat <span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> <span class="keyword">content</span> <span class="built_in">VARCHAR</span>(<span class="number">512</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br></pre></td></tr></table></figure></p>
+<p>3.修改数据连接<br><code>druid：</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring<span class="selector-class">.datasource</span><span class="selector-class">.druid</span><span class="selector-class">.connection-init-sqls</span>=<span class="string">"SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"</span></span><br></pre></td></tr></table></figure></p>
+<p><code>hikari:</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring<span class="selector-class">.datasource</span><span class="selector-class">.hikari</span><span class="selector-class">.connection-init-sql</span>=<span class="string">"SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>由于从utf8升级到了utf8mb4，一个字符所占用的空间也由3个字节增长到4个字节，但是我们当初创建表时，设置的字段类型以及最大的长度没有改变。例如，你在utf8下设置某一字段的类型为TINYTEXT, 这中字段类型最大可以容纳255字节，三个字节一个字符的情况下可以容纳85个字符，四个字节一个字符的情况下只能容纳63个字符，如果原表中的这个字段的值有一个或多个超过了63个字符，那么转换成utf8mb4字符编码时将转换失败，你必须先将TINYTEXT更改为TEXT等更高容量的类型之后才能继续转换字符编码</p>
+<p>在InnoDB引擎中，最大的索引长度为767字节，三个字节一个字符的情况下，索引列的字符长度最大可以达到255，四个字节一个字符的情况下，索引的字符长度最大只能到191。如果你已经存在的表中的索引列的类型为VARCHAR(255)那么转换utf8mb4时同样会转换失败。你需要先将VARCHAR(255)更改为VARCHAR(191)才能继续转换字符编码</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>要存储<code>Emoji</code>需要<code>utf8mb4</code>字符集，通常不需要修改数据库的字符集，只需要修改表，字段的字符集。然后还需要再数据库session初始化时就将字符集指定为<code>utf8mb4</code>否则就会采用数据库默认字符集，通常是utf8，就会导致无法存入emoji.</p>
+<p>参考：<br><a href="https://docs.lvrui.io/2016/08/21/%E4%BF%AE%E6%94%B9MySQL%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAutf8mb4/" target="_blank" rel="noopener">修改MySQL的字符集为utf8mb4</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/f804239d.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -465,7 +662,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=hbgbchc8" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=7o09a61f" title="今日诗词">
       
       
 
@@ -649,7 +846,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=9ju55vqk" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=k4fq8oy7" title="今日诗词">
       
       
 
@@ -837,7 +1034,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ft07k1ku" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=k7opmbos" title="今日诗词">
       
       
 
@@ -1033,7 +1230,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=xlru6m2k" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=9jq3xmyq" title="今日诗词">
       
       
 
@@ -1229,7 +1426,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ogbx5dhq" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=m2bqcdia" title="今日诗词">
       
       
 
@@ -1418,7 +1615,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=46zdytwi" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=apuflgcp" title="今日诗词">
       
       
 
@@ -1609,7 +1806,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=sjvebukp" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=11hwqqmk" title="今日诗词">
       
       
 
@@ -1801,7 +1998,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=x9hx47g5" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=1dbhohry" title="今日诗词">
       
       
 
@@ -1990,7 +2187,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ibjrixqn" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=1h9mhr0s" title="今日诗词">
       
       
 
@@ -2028,210 +2225,6 @@
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/481587f.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/481587f.html" class="post-title-link" itemprop="url">NIO2笔记+搬运</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-24 09:18:00" itemprop="dateCreated datePublished" datetime="2019-01-24T09:18:00+08:00">2019-01-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-21 10:02:12" itemprop="dateModified" datetime="2019-02-21T10:02:12+08:00">2019-02-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/481587f.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/481587f.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=03ho8ej2" title="今日诗词">
-      
-      
-
-      
-        
-          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p> 本文是介绍 Java 7 中的 More New I/O APIs for Java (NIO.2) 的两部分文章的第二部分。 正如在 第一部分 中探索的异通道 API 一样， NIO.2 的文件系统用以前 Java 版本处理 I/O 的相关方法，填补了一些重大的空白。 依照 NIO.2 Java 规范要求（JSR 203）：</p>
-<p>Java 平台早就需要一个文件系统接口而不是 java.io.File 类。 该类不会在平台中以一贯的方式来处理文件名，它不支持高效文件属性访问，不允许复杂应用程序利用可用的文件系统特定特性（比如，符号链接）， 而且，其大多数方法在出错时仅返回失败，而不会提供异常信息。<br>补救措施是 Java 7 试用版中的三个新的文件系统包：</p>
-<ul>
-<li><code>java.nio.file</code></li>
-<li><code>java.nio.file.attribute</code></li>
-<li><code>java.nio.file.spi</code></li>
-</ul>
-<p>本文重点关注这些包中最有用的类：</p>
-<ul>
-<li><code>java.nio.file.Files</code> 与 <code>java.nio.file.FileVisitor</code> 使得您可以在文件系统中漫步，在特定目录深度查询文件或者目录，并可对每个查询结果执行用户实现的回调方法。</li>
-<li><code>java.nio.file.Path</code> 与 <code>java.nio.file.WatchService</code> 允许 “ 注册 ” 来监视特定目录。如果在目录中发生了文件创建、修改或者删除操作，监视目录的应用程序将收到通知。</li>
-<li><code>java.nio.attribute.*AttributeView</code> 允许查看此前对于 Java 用户隐藏的文件和目录属性。这些属性包括文件所有者及组权限，访问控制列表（ACL），以及扩展文件属性。
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/481587f.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </li></ul></div>
 
     
 
@@ -2321,7 +2314,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2387,7 +2380,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

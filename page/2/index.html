@@ -358,6 +358,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/481587f.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/481587f.html" class="post-title-link" itemprop="url">NIO2笔记+搬运</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-24 09:18:00" itemprop="dateCreated datePublished" datetime="2019-01-24T09:18:00+08:00">2019-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-21 10:02:12" itemprop="dateModified" datetime="2019-02-21T10:02:12+08:00">2019-02-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/481587f.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/481587f.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=bnc7bh8h" title="今日诗词">
+      
+      
+
+      
+        
+          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p> 本文是介绍 Java 7 中的 More New I/O APIs for Java (NIO.2) 的两部分文章的第二部分。 正如在 第一部分 中探索的异通道 API 一样， NIO.2 的文件系统用以前 Java 版本处理 I/O 的相关方法，填补了一些重大的空白。 依照 NIO.2 Java 规范要求（JSR 203）：</p>
+<p>Java 平台早就需要一个文件系统接口而不是 java.io.File 类。 该类不会在平台中以一贯的方式来处理文件名，它不支持高效文件属性访问，不允许复杂应用程序利用可用的文件系统特定特性（比如，符号链接）， 而且，其大多数方法在出错时仅返回失败，而不会提供异常信息。<br>补救措施是 Java 7 试用版中的三个新的文件系统包：</p>
+<ul>
+<li><code>java.nio.file</code></li>
+<li><code>java.nio.file.attribute</code></li>
+<li><code>java.nio.file.spi</code></li>
+</ul>
+<p>本文重点关注这些包中最有用的类：</p>
+<ul>
+<li><code>java.nio.file.Files</code> 与 <code>java.nio.file.FileVisitor</code> 使得您可以在文件系统中漫步，在特定目录深度查询文件或者目录，并可对每个查询结果执行用户实现的回调方法。</li>
+<li><code>java.nio.file.Path</code> 与 <code>java.nio.file.WatchService</code> 允许 “ 注册 ” 来监视特定目录。如果在目录中发生了文件创建、修改或者删除操作，监视目录的应用程序将收到通知。</li>
+<li><code>java.nio.attribute.*AttributeView</code> 允许查看此前对于 Java 用户隐藏的文件和目录属性。这些属性包括文件所有者及组权限，访问控制列表（ACL），以及扩展文件属性。
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/481587f.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6558eb68.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -477,7 +681,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=210at1wj" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=wsemu3nl" title="今日诗词">
       
       
 
@@ -682,7 +886,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=yrmut719" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=op9g2ltf" title="今日诗词">
       
       
 
@@ -861,7 +1065,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=p84s7qs9" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=qdgzdqmz" title="今日诗词">
       
       
 
@@ -1055,7 +1259,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=qate1e2r" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=kz143gbe" title="今日诗词">
       
       
 
@@ -1250,7 +1454,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=dlypqz1e" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=og8kk0pm" title="今日诗词">
       
       
 
@@ -1448,7 +1652,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=356kq578" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=oaaf0olr" title="今日诗词">
       
       
 
@@ -1645,7 +1849,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=9umml23q" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=43oxpp9r" title="今日诗词">
       
       
 
@@ -1837,7 +2041,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=vmn4c095" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=hiyfstwi" title="今日诗词">
       
       
 
@@ -2033,7 +2237,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=oazjcvwg" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=m6962mni" title="今日诗词">
       
       
 
@@ -2061,210 +2265,6 @@
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/378a9772.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/378a9772.html" class="post-title-link" itemprop="url">java 过滤xss emoji</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-10 13:18:27" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:27+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-21 14:10:34" itemprop="dateModified" datetime="2019-01-21T14:10:34+08:00">2019-01-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/378a9772.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/378a9772.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=30hijgu9" title="今日诗词">
-      
-      
-
-      
-        
-          <h2 id="什么是XSS攻击"><a href="#什么是XSS攻击" class="headerlink" title="什么是XSS攻击"></a>什么是XSS攻击</h2><p>XSS是一种经常出现在web应用中的计算机安全漏洞，它允许恶意web用户将代码植入到提供给其它用户使用的页面中。比如这些代码包括HTML代码和客户端脚本。攻击者利用XSS漏洞旁路掉访问控制——例如同源策略(same origin policy)。这种类型的漏洞由于被黑客用来编写危害性更大的网络钓鱼(Phishing)攻击而变得广为人知。</p>
-<h2 id="XSS漏洞的危害"><a href="#XSS漏洞的危害" class="headerlink" title="XSS漏洞的危害"></a>XSS漏洞的危害</h2><ol>
-<li>网络钓鱼，包括盗取各类用户账号；</li>
-<li>窃取用户cookies资料，从而获取用户隐私信息，或利用用户身份进一步对网站执行操作；</li>
-<li>劫持用户（浏览器）会话，从而执行任意操作，例如进行非法转账、强制发表日志、发送电子邮件等；</li>
-<li>强制弹出广告页面、刷流量等；</li>
-<li>进行大量的客户端攻击，如DDoS攻击；</li>
-<li>结合其他漏洞，如CSRF漏洞，实施进一步作恶；</li>
-<li>提升用户权限，包括进一步渗透网站；</li>
-</ol>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>Emoji的开源代码</p>
-<p><a href="https://github.com/vdurmont/emoji-java" target="_blank" rel="noopener">https://github.com/vdurmont/emoji-java</a><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/378a9772.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
 
     
 
@@ -2354,7 +2354,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2420,7 +2420,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

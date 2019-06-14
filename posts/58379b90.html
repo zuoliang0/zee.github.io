@@ -105,27 +105,25 @@
 
 
 
-  <meta name="description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
-<meta name="keywords" content="技术,帆软相关,帆软二开">
+  <meta name="description" content="前言项目中需要支持Emoji表情，但是尝试了很多办法无果后，结合了多个文章后实现了在Springboot项目中使用mysql数据库存储Emoji表情。 在数据库中存储Emoji需要用utf8mb4编码格式，一般mysql默认的是utf8 解决方案1.修改表的字符集 1CREATE DATABASE  `tableName` DEFAULT CHARACTER SET utf8 COLLATE ut">
+<meta name="keywords" content="java,SpringBoot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FR9.0实现图片上传">
-<meta property="og:url" content="https://blog.zzl.ink/posts/e7a3ce3e.html">
+<meta property="og:title" content="解决SpringBoot Mysql Emoji表情 druid hikari">
+<meta property="og:url" content="https://blog.zzl.ink/posts/58379b90.html">
 <meta property="og:site_name" content="左良 | Sean&#39;s Blog">
-<meta property="og:description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
+<meta property="og:description" content="前言项目中需要支持Emoji表情，但是尝试了很多办法无果后，结合了多个文章后实现了在Springboot项目中使用mysql数据库存储Emoji表情。 在数据库中存储Emoji需要用utf8mb4编码格式，一般mysql默认的是utf8 解决方案1.修改表的字符集 1CREATE DATABASE  `tableName` DEFAULT CHARACTER SET utf8 COLLATE ut">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg">
-<meta property="og:updated_time" content="2019-04-04T02:09:23.397Z">
+<meta property="og:updated_time" content="2019-06-14T03:15:03.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FR9.0实现图片上传">
-<meta name="twitter:description" content="导言在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。 文件上传使用方法如下12345678910111213141516171819202122FR.showUploadDialog(&amp;#123;                url: FR.servletURL + &quot;?op=fr_attach&amp;amp;cmd=ah_upload&quot;">
-<meta name="twitter:image" content="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg">
+<meta name="twitter:title" content="解决SpringBoot Mysql Emoji表情 druid hikari">
+<meta name="twitter:description" content="前言项目中需要支持Emoji表情，但是尝试了很多办法无果后，结合了多个文章后实现了在Springboot项目中使用mysql数据库存储Emoji表情。 在数据库中存储Emoji需要用utf8mb4编码格式，一般mysql默认的是utf8 解决方案1.修改表的字符集 1CREATE DATABASE  `tableName` DEFAULT CHARACTER SET utf8 COLLATE ut">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.zzl.ink/posts/e7a3ce3e.html">
+  <link rel="canonical" href="https://blog.zzl.ink/posts/58379b90.html">
 
 
 
@@ -135,7 +133,7 @@
   };
 </script>
 
-  <title>FR9.0实现图片上传 | 左良 | Sean's Blog</title>
+  <title>解决SpringBoot Mysql Emoji表情 druid hikari | 左良 | Sean's Blog</title>
   
 
 
@@ -361,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/e7a3ce3e.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/58379b90.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="onlyxx">
@@ -378,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">FR9.0实现图片上传
+          <h2 class="post-title" itemprop="name headline">解决SpringBoot Mysql Emoji表情 druid hikari
 
               
             
@@ -404,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-03-22 11:18:00" itemprop="dateCreated datePublished" datetime="2019-03-22T11:18:00+08:00">2019-03-22</time>
+              <time title="创建时间：2019-06-13 20:18:27" itemprop="dateCreated datePublished" datetime="2019-06-13T20:18:27+08:00">2019-06-13</time>
             
 
             
@@ -421,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-04 10:09:23" itemprop="dateModified" datetime="2019-04-04T10:09:23+08:00">2019-04-04</time>
+                <time title="修改时间：2019-06-14 11:15:03" itemprop="dateModified" datetime="2019-06-14T11:15:03+08:00">2019-06-14</time>
               
             
           </span>
@@ -438,7 +436,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/解决问题/" itemprop="url" rel="index"><span itemprop="name">解决问题</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
 
                 
                 
@@ -453,9 +451,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/e7a3ce3e.html#comments" itemprop="discussionUrl">
+                <a href="/posts/58379b90.html#comments" itemprop="discussionUrl">
                 
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/e7a3ce3e.html" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/58379b90.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -478,14 +476,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=khm6336p" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=l8av9yla" title="今日诗词">
       
       
 
       
-        <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>在弄帆软二开的时候遇到一个需要在前端实现图片上传的功能，本想自己造一个轮子，后来发现有实现好的，就直接拿来用了。</p>
-<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>使用方法如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">FR.showUploadDialog(&#123;</span><br><span class="line">                url: FR.servletURL + <span class="string">"?op=fr_attach&amp;cmd=ah_upload"</span>,</span><br><span class="line">                allowTypes: <span class="string">""</span>,</span><br><span class="line">                err: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.info(e)</span><br><span class="line">                    FR.Msg.toast(<span class="string">"文件上传失败"</span> + e.responseText);</span><br><span class="line">                &#125;,</span><br><span class="line">                callback: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(e.responseText);</span><br><span class="line">                    <span class="comment">//访问urlhttp://localhost:8075/WebReport/ReportServer?op=fr_attach&amp;cmd=ah_image&amp;id=8347221a-72d4-443f-914b-e69385f20c0d&amp;isAdjust=false</span></span><br><span class="line">                    <span class="comment">//响应格式&#123;"attach_type":"image","filename":"bixiaob.png","attach_id":"349b5b4d-4c69-44b9-acc1-94be78e89552"&#125;"</span></span><br><span class="line">                    <span class="keyword">var</span> url = FR.servletURL + <span class="string">"?op=fr_attach&amp;cmd=ah_image&amp;isAdjust=false&amp;id="</span> + json.attach_id;</span><br><span class="line">                    <span class="built_in">console</span>.info(<span class="string">"图片上传成功："</span>+url);</span><br><span class="line">                    <span class="keyword">if</span> (url) &#123;</span><br><span class="line">                    	<span class="comment">//处理业务</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                autoUpload: <span class="literal">false</span>,</span><br><span class="line">                beforeAction: FR.emptyFn,</span><br><span class="line">                afterAction: FR.emptyFn</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure></p>
-<p>效果如图<br><img src="https://wx2.sinaimg.cn/large/006c8Mejgy1g1bf7frutxj30o60gg3yz.jpg" alt="" title="效果图"></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>项目中需要支持Emoji表情，但是尝试了很多办法无果后，结合了多个文章后实现了在Springboot项目中使用mysql数据库存储Emoji表情。</p>
+<p>在数据库中存储Emoji需要用utf8mb4编码格式，一般mysql默认的是utf8</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>1.修改表的字符集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span>  <span class="string">`tableName`</span> <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<p>2.修改字段字符集<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_chat <span class="keyword">MODIFY</span> <span class="keyword">COLUMN</span> <span class="keyword">content</span> <span class="built_in">VARCHAR</span>(<span class="number">512</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">COLLATE</span> utf8mb4_unicode_ci;</span><br></pre></td></tr></table></figure></p>
+<p>3.修改数据连接<br><code>druid：</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring<span class="selector-class">.datasource</span><span class="selector-class">.druid</span><span class="selector-class">.connection-init-sqls</span>=<span class="string">"SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"</span></span><br></pre></td></tr></table></figure></p>
+<p><code>hikari:</code><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring<span class="selector-class">.datasource</span><span class="selector-class">.hikari</span><span class="selector-class">.connection-init-sql</span>=<span class="string">"SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>由于从utf8升级到了utf8mb4，一个字符所占用的空间也由3个字节增长到4个字节，但是我们当初创建表时，设置的字段类型以及最大的长度没有改变。例如，你在utf8下设置某一字段的类型为TINYTEXT, 这中字段类型最大可以容纳255字节，三个字节一个字符的情况下可以容纳85个字符，四个字节一个字符的情况下只能容纳63个字符，如果原表中的这个字段的值有一个或多个超过了63个字符，那么转换成utf8mb4字符编码时将转换失败，你必须先将TINYTEXT更改为TEXT等更高容量的类型之后才能继续转换字符编码</p>
+<p>在InnoDB引擎中，最大的索引长度为767字节，三个字节一个字符的情况下，索引列的字符长度最大可以达到255，四个字节一个字符的情况下，索引的字符长度最大只能到191。如果你已经存在的表中的索引列的类型为VARCHAR(255)那么转换utf8mb4时同样会转换失败。你需要先将VARCHAR(255)更改为VARCHAR(191)才能继续转换字符编码</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>要存储<code>Emoji</code>需要<code>utf8mb4</code>字符集，通常不需要修改数据库的字符集，只需要修改表，字段的字符集。然后还需要再数据库session初始化时就将字符集指定为<code>utf8mb4</code>否则就会采用数据库默认字符集，通常是utf8，就会导致无法存入emoji.</p>
+<p>参考：<br><a href="https://docs.lvrui.io/2016/08/21/%E4%BF%AE%E6%94%B9MySQL%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%BAutf8mb4/" target="_blank" rel="noopener">修改MySQL的字符集为utf8mb4</a></p>
 
       
     </div>
@@ -515,7 +521,7 @@
         </li>
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="/posts/e7a3ce3e.html" title="FR9.0实现图片上传">posts/e7a3ce3e.html</a>
+          <a href="/posts/58379b90.html" title="解决SpringBoot Mysql Emoji表情 druid hikari">posts/58379b90.html</a>
         </li>
         <li class="post-copyright-license">
           <strong>版权： </strong>
@@ -527,11 +533,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/技术/" rel="tag"># 技术</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            <a href="/tags/帆软相关/" rel="tag"># 帆软相关</a>
-          
-            <a href="/tags/帆软二开/" rel="tag"># 帆软二开</a>
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
           
         </div>
       
@@ -544,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/ae46bb1a.html" rel="next" title="在Spring boot项目中时区问题的解决">
-                <i class="fa fa-chevron-left"></i> 在Spring boot项目中时区问题的解决
+              <a href="/posts/f804239d.html" rel="next" title="centos实现代理和番镪">
+                <i class="fa fa-chevron-left"></i> centos实现代理和番镪
               </a>
             
           </div>
@@ -553,10 +557,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/fe4572b.html" rel="prev" title="FR9.0的已知后台widget及用法">
-                FR9.0的已知后台widget及用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -754,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导言"><span class="nav-number">1.</span> <span class="nav-text">导言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-number">2.</span> <span class="nav-text">文件上传</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -914,9 +914,9 @@
 
 <script>
   var disqus_config = function () {
-    this.page.url = "https://blog.zzl.ink/posts/e7a3ce3e.html";
-    this.page.identifier = "posts/e7a3ce3e.html";
-    this.page.title = 'FR9.0实现图片上传';
+    this.page.url = "https://blog.zzl.ink/posts/58379b90.html";
+    this.page.identifier = "posts/58379b90.html";
+    this.page.title = '解决SpringBoot Mysql Emoji表情 druid hikari';
     };
   function loadComments () {
     var d = document, s = d.createElement('script');
