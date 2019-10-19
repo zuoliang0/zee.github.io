@@ -358,6 +358,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6bc7d645.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/6bc7d645.html" class="post-title-link" itemprop="url">java 远程通信技术学习</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-11 14:18:27" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-21 14:10:15" itemprop="dateModified" datetime="2019-01-21T14:10:15+08:00">2019-01-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6bc7d645.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/6bc7d645.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=kzeg4kaj" title="今日诗词">
+      
+      
+
+      
+        
+          
+            <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所有的分布式应用通讯都基于这个原理而实现，只是为了应用的易用，各种语言通常都会提供一些更为贴近应用易用的应用层协议。</p>
+<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
+<li>传输的标准格式是什么？</li>
+<li>怎么样将请求转化为传输的流？</li>
+<li>怎么接收和处理流？</li>
+<li>怎么接收和处理流？</li>
+</ol>
+<p>在java领域中知名的有：RMI、XML-RPC、Binary-RPC、SOAP、CORBA、JMS</p>
+<h2 id="具体协议"><a href="#具体协议" class="headerlink" title="具体协议"></a>具体协议</h2><h3 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h3><p>RMI是个典型的为java定制的远程通信协议，我们都知道，在单独的jvm中，我们可以通过直接调用对象实例的方式来实现通信。那么在远程通信时，如果也能按照这种方式当然是最好了，这种远程通信的机制成为RPC（Remote Procedure Call）<br><img src="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg" alt="图" title="远程调用"></p>
+<ol>
+<li>传输的标准格式是什么？<br> Java ObjectStream</li>
+<li>怎么样将请求转化为传输的流？</li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###" target="_blank" rel="noopener">https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/378a9772.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -477,7 +679,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=nmxxbvns" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=yde0fiao" title="今日诗词">
       
       
 
@@ -507,200 +709,6 @@
         
       
     </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/52c0d6b8.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/52c0d6b8.html" class="post-title-link" itemprop="url">砥砺2019</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-10 13:18:27" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:27+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-15 19:51:02" itemprop="dateModified" datetime="2019-01-15T19:51:02+08:00">2019-01-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/记录生活/" itemprop="url" rel="index"><span itemprop="name">记录生活</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/52c0d6b8.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/52c0d6b8.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=sxpeu5fi" title="今日诗词">
-      
-      
-
-      
-        
-          
-            <p>2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。</p>
-<p>说下18年都关注过的东西：</p>
-<ol>
-<li>区块链<br> 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正能落地的项目不到百分之一。但是作为一个技术人，能在其中有一定的积累还算是有一定的谈资。</li>
-<li>买房<br> 虽然还是最终还是没在18年买到房，但是一直关心着这个事情。早早就做好准备，把户口从老家迁到城市，但是一直因为钱的问题，拖延，拖延，到后来又没有了资格，心态转变了，随缘吧。房子对于单身来说并不重要，对于一个要准备结婚的人来说，那就是刚需有房才会有安全感。做好准备，随时上车！</li>
-<li>跳槽<br> 这一年我离开了我大学毕业之后第一家公司，还是点不舍，公司对我很好，不过我还是想要离开，原来的项目，业务，对于如今的我进步的空间已经比较小了，通过这次跳槽去了解更多的市场环境，使用一些自己前无法独立使用的技术，接触新的项目。</li>
-</ol>
-<p>2019年，砥砺前行，踏实做事，不断学习，提升自己！</p>
-
-          
-        
-      
-    </div>
 
     
 
@@ -875,7 +883,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=fhv40bfh" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=cy8uioia" title="今日诗词">
       
       
 
@@ -883,6 +891,200 @@
         
           
             <p> 占位</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/52c0d6b8.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/52c0d6b8.html" class="post-title-link" itemprop="url">砥砺2019</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-10 13:18:27" itemprop="dateCreated datePublished" datetime="2019-01-10T13:18:27+08:00">2019-01-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-15 19:51:02" itemprop="dateModified" datetime="2019-01-15T19:51:02+08:00">2019-01-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/记录生活/" itemprop="url" rel="index"><span itemprop="name">记录生活</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/52c0d6b8.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/52c0d6b8.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=kzkc9a95" title="今日诗词">
+      
+      
+
+      
+        
+          
+            <p>2019年来了，没有一分钟一秒钟的迟疑，不等我思考将来或是过去。但是我还是要给自己留出时间来总结自己2018年。</p>
+<p>说下18年都关注过的东西：</p>
+<ol>
+<li>区块链<br> 说区块链是18年的最火的东西，我觉得一点都不过，在上一家公司的时候，负责开发了一个区块链的钱包，亲身经历，狂热，沉寂，放弃。学习了各种各样的所谓“区块链”。虽然我同意区块链是可以解决 很多人和人之间的信任问题，但是，现在很多“项目”都是圈钱的，真正能落地的项目不到百分之一。但是作为一个技术人，能在其中有一定的积累还算是有一定的谈资。</li>
+<li>买房<br> 虽然还是最终还是没在18年买到房，但是一直关心着这个事情。早早就做好准备，把户口从老家迁到城市，但是一直因为钱的问题，拖延，拖延，到后来又没有了资格，心态转变了，随缘吧。房子对于单身来说并不重要，对于一个要准备结婚的人来说，那就是刚需有房才会有安全感。做好准备，随时上车！</li>
+<li>跳槽<br> 这一年我离开了我大学毕业之后第一家公司，还是点不舍，公司对我很好，不过我还是想要离开，原来的项目，业务，对于如今的我进步的空间已经比较小了，通过这次跳槽去了解更多的市场环境，使用一些自己前无法独立使用的技术，接触新的项目。</li>
+</ol>
+<p>2019年，砥砺前行，踏实做事，不断学习，提升自己！</p>
 
           
         
@@ -977,7 +1179,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1045,7 +1247,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

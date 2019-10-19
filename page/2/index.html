@@ -358,6 +358,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/f85ee54b.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/f85ee54b.html" class="post-title-link" itemprop="url">centos安装Nginx并配置https转发</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-29 17:32:00" itemprop="dateCreated datePublished" datetime="2019-01-29T17:32:00+08:00">2019-01-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-30 09:43:33" itemprop="dateModified" datetime="2019-01-30T09:43:33+08:00">2019-01-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f85ee54b.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/f85ee54b.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=8fi92u0s" title="今日诗词">
+      
+      
+
+      
+        
+          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>通过使用nginx来部署https是一种方便的方式。本文是一个自己部署https的笔记</p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>在Centos的默认镜像中不包含nginx，我们需要添加一个<code>EPEL (extra packages for Enterprise Linux) repository</code> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
+<p>然后运行yum 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure></p>
+<p>安装好之后可以通过service命令来控制nginx的启动</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">start</span> nginx <span class="comment"># 启动</span></span><br><span class="line">sudo systemctl <span class="keyword">stop</span> nginx  <span class="comment"># 关闭</span></span><br><span class="line">sudo systemctl restart nginx  <span class="comment"># 重启</span></span><br><span class="line">systemctl <span class="keyword">status</span> nginx  <span class="comment"># 检查状态</span></span><br></pre></td></tr></table></figure>
+<p>最好启动开机自启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable nginx</span><br></pre></td></tr></table></figure>
+<p>启动之后默认挂载在80端口，https是挂载在443端口，需要检查一下防火墙是否对这些端口进行了封锁。<br>如果系统使用的是<code>firewalld</code> 请使用下列的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --add-service=http</span><br><span class="line">sudo firewall-cmd --add-service=https</span><br><span class="line">sudo firewall-cmd --runtime-to-permanent</span><br></pre></td></tr></table></figure>
+<p>如果是用的<code>iptables</code> 那就用下列的命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>然后访问对应的ip就可以看到nginx的默认页面了</p>
+<h2 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h2><p>证书的申请我不讲了，有很多方法。根据实际情况看下资料就好了。</p>
+<p>https 的证书包含一个<code>private</code>,<code>public</code>两个部分。我们分别建立两个文件夹来存放他们</p>
+<blockquote>
+<p>/etc/ssl/certs 存放公钥的<code>*.crt</code>，<code>*.pem</code> 两种文件<br>/etc/ssl/private 存放公钥的<code>*.key</code>文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/ssl/private</span><br><span class="line">sudo chmod 700 /etc/ssl/private</span><br><span class="line"></span><br><span class="line">sudo mkdir /etc/ssl/certs</span><br><span class="line">sudo chmod 700 /etc/ssl/certs</span><br></pre></td></tr></table></figure>
+<h2 id="配置nginx的Https"><a href="#配置nginx的Https" class="headerlink" title="配置nginx的Https"></a>配置nginx的Https</h2><p>nginx在默认情况下是没有启动https的，所以我们需要新建一个配置文件用来描述https<br>我们需要再<code>/etc/nginx/conf.d/</code>下创建一个<code>.conf</code>结尾的文件，nginx在启动的时候会默认加载<code>conf.d</code>下以<code>.conf</code>结尾的配置文件。<br>我们创建一个ssl的配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/conf.d/ssl.conf</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/posts/f85ee54b.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/481587f.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -477,7 +689,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=bnc7bh8h" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=e01klwfa" title="今日诗词">
       
       
 
@@ -681,7 +893,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=wsemu3nl" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=u2weqnrk" title="今日诗词">
       
       
 
@@ -886,7 +1098,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=op9g2ltf" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=8z94h91q" title="今日诗词">
       
       
 
@@ -1065,7 +1277,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=qdgzdqmz" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=msgbyzgr" title="今日诗词">
       
       
 
@@ -1259,7 +1471,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=kz143gbe" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=dxc5u0ks" title="今日诗词">
       
       
 
@@ -1454,7 +1666,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=og8kk0pm" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=vt6x5ob8" title="今日诗词">
       
       
 
@@ -1652,7 +1864,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=oaaf0olr" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=0wqpe5ds" title="今日诗词">
       
       
 
@@ -1849,7 +2061,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=43oxpp9r" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=aw48b59r" title="今日诗词">
       
       
 
@@ -2041,7 +2253,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=hiyfstwi" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ghijiey3" title="今日诗词">
       
       
 
@@ -2058,208 +2270,6 @@
 <li>feign官网 <a href="https://github.com/OpenFeign/feign/" target="_blank" rel="noopener">https://github.com/OpenFeign/feign/</a></li>
 <li>feign 源码解析 <a href="http://techblog.ppdai.com/2018/05/14/20180514/" title="拍拍贷基础框架团队-技术" target="_blank" rel="noopener">http://techblog.ppdai.com/2018/05/14/20180514/</a></li>
 </ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/6bc7d645.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/6bc7d645.html" class="post-title-link" itemprop="url">java 远程通信技术学习</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-11 14:18:27" itemprop="dateCreated datePublished" datetime="2019-01-11T14:18:27+08:00">2019-01-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-21 14:10:15" itemprop="dateModified" datetime="2019-01-21T14:10:15+08:00">2019-01-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/6bc7d645.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/6bc7d645.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=m6962mni" title="今日诗词">
-      
-      
-
-      
-        
-          
-            <h2 id="理论部分"><a href="#理论部分" class="headerlink" title="理论部分"></a>理论部分</h2><p>要实现网络机器间的通讯，首先得来看看计算机系统网络通信的基本原理，在底层层面去看，网络通信需要做的就是将流从一台计算机传输到另外一台计算机，基于传输协议和网络IO来实现，其中传输协议比较出名的有socket、http、tcp、udp等等，其中socket作为最底层的传输协议，而http、tcp、udp都是在此基础上为某类应用而扩展出的协议，网络IO，主要有bio、nio、aio三种方式，所有的分布式应用通讯都基于这个原理而实现，只是为了应用的易用，各种语言通常都会提供一些更为贴近应用易用的应用层协议。</p>
-<h2 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h2><ol>
-<li>传输的标准格式是什么？</li>
-<li>怎么样将请求转化为传输的流？</li>
-<li>怎么接收和处理流？</li>
-<li>怎么接收和处理流？</li>
-</ol>
-<p>在java领域中知名的有：RMI、XML-RPC、Binary-RPC、SOAP、CORBA、JMS</p>
-<h2 id="具体协议"><a href="#具体协议" class="headerlink" title="具体协议"></a>具体协议</h2><h3 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h3><p>RMI是个典型的为java定制的远程通信协议，我们都知道，在单独的jvm中，我们可以通过直接调用对象实例的方式来实现通信。那么在远程通信时，如果也能按照这种方式当然是最好了，这种远程通信的机制成为RPC（Remote Procedure Call）<br><img src="https://ws1.sinaimg.cn/large/c5c35604gy1fz2q40lchbj21360ccwnk.jpg" alt="图" title="远程调用"></p>
-<ol>
-<li>传输的标准格式是什么？<br> Java ObjectStream</li>
-<li>怎么样将请求转化为传输的流？</li>
-</ol>
-<blockquote>
-<p>参考：<a href="https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###" target="_blank" rel="noopener">https://wenku.baidu.com/view/c5851a4502768e9951e738bb.html###</a></p>
-</blockquote>
 
           
         
@@ -2354,7 +2364,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2422,7 +2432,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

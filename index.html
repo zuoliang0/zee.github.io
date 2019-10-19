@@ -358,6 +358,221 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/8ebb5104.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="onlyxx">
+      <meta itemprop="description" content="write some content">
+      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="左良 | Sean's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/posts/8ebb5104.html" class="post-title-link" itemprop="url">centos7无界面静默安装oracle11 100%成功</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-19 15:18:00 / 修改时间：18:26:39" itemprop="dateCreated datePublished" datetime="2019-10-19T15:18:00+08:00">2019-10-19</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8ebb5104.html#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/8ebb5104.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+    <img src="https://v2.jinrishici.com/one.svg?t=xkcm8pgi" title="今日诗词">
+      
+      
+
+      
+        
+          
+            <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>  好久没有更新博客了，主要是不知道写点什么好。那干脆做一些软件安装的教程吧。</p>
+<p>  本文主要是介绍centos 7 下安装oracle 11的过程，在看了很多网上教程，加上自己摸索总结出一些容易出错的点。在本文中进行展示</p>
+<h2 id="oracle-11g下载"><a href="#oracle-11g下载" class="headerlink" title="oracle 11g下载"></a>oracle 11g下载</h2><p>网上的教程一般是先下载ios然后解压通过ssh上传什么的，这种办法也不是不可以，只是太慢了，我这里给大家推荐一种快捷的办法，直接在服务器上用wget下载，只要服务器网速好，很快就能把安装包下载好。</p>
+<p>首先访问：<a href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html" target="_blank" rel="noopener">https://www.oracle.com/database/technologies/oracle-database-software-downloads.html</a></p>
+<p>找到对应的包，本次教程是11.2.0.1.0的安装，所以找到<code>Linux x86-64</code>版本的下载地址</p>
+<p><a href="https://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_1of2.zip" target="_blank" rel="noopener">https://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_1of2.zip</a><br><a href="https://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_2of2.zip" target="_blank" rel="noopener">https://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_2of2.zip</a></p>
+<p>一共两个卷 然后点击之后会同意条款，同意之后会提示登录oracle账号，如果之前你们从oracle下载过java jdk 那就可以使用那个账号登陆，如果没有可以直接注册一个。<br>注册或者登陆之后再回到那个页面点击下载这个时候浏览器会自动开始下载，但是别急，我们现在使用浏览器的开发者工具，打开网络面板，找一个oracle网页的html请求，把其中请求头中的cookies 复制出来<br>像这样：<br><img src="https://tvax4.sinaimg.cn/large/c5c35604gy1g83kvfk9nuj21cw16ingq.jpg" alt="image"></p>
+<p>然后我们使用wget来构造一个带cookies的请求<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget --no-cookies --header <span class="string">"Cookie:s_fid=03CA6261D2D9521A-25568A66A7B3D73A; s_cc=true; ORA_WWW_MRKT=v:1~g:3769290A8D127500E050E60AD27F2320~t:NOT_FOUND~c:LP05; ORA_WWW_PERSONALIZE=v:1~i:NOT_FOUND~r:NOT_FOUND~g:APAC~l:zh-CN~cs:NOT_FOUND~cn:??????; ORASSO_AUTH_HINT=v1.0~20191018130524; ORA_UCM_INFO=3~3769290A8D127500E050E60AD27F2320~Zuoliang~Zhang~onlyxx@outlook.com; OAMAuthnCookie_edelivery.oracle.com:443=f5cc3fbcce63f859cbb1bfa04d3721abf645acb3%7EW%2BGVYBhwJckCVHYJnCYILorhEIWfRUtbRIk%2BubrMdLfaAp9rc29hvQOJbjkPYjvSpnLke7OgU3XNKyY1HfC7I893qrHBTU7qMQuFHlC4GlvwH1p%2FS0xyT%2F8GChoLIhoXn%2FHSGWOjqqCdxdqhVtOtVUU7TGJeLPNKsLEG4ilw6acJKS7gWVcmsGXsClHvA0KlNU%2BpYqTf8fe%2BGatJBuCaKktK6rLf0RDNUvWXafl7mImSYyGspMvNY6q0B%2FGh2oVUdtlwctFSf%2Fz6D6oTVLQukfydt4p04h7s0bFth8PjAeoU7R6Wtlz%2BucL3QBUe6YyzOHPpynEeRVjtONzzZP6gAGtPIhCaVCZpmlcA0pwqL9IMEbkU0TfQFb4qTKbEQg%2F8QZM4RZvnA1UhHn7MINjMVsvHkAm5K1r2wpHCzQWyHGQCW6A0t0PxhUDqyy1ORw7%2BMCQuUQNJoJNXZUUEr1YOS%2FJMGJhcgQDZaui%2B%2BuTLVs%2FyA2py2n4e5k%2BrJBf6cplBOKEXnqt%2F0MV4RbzlpmxLK%2BCVjfim%2FmVMsNTEwSEvBxs%3D; OAMAuthnHintCookie=1; ORA_WWW_MRKT=v:1~g:3769290A8D127500E050E60AD27F2320~t:NOT_FOUND~c:LP05; ORA_WWW_PERSONALIZE==?UTF-8?B?djoxfmk6......这里是复制出来的cookis"</span> https://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_1of2.zip 这里是下载地址根据到时候的实际情况而定</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装环境准备"><a href="#安装环境准备" class="headerlink" title="安装环境准备"></a>安装环境准备</h2><p>下载好之后会得到2个zip的文件<br>linux.x64_11gR2_database_1of2.zip<br>linux.x64_11gR2_database_2of2.zip</p>
+<p>解压<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip linux.x64_11gR2_database_1of2.zip</span><br><span class="line">unzip linux.x64_11gR2_database_2of2.zip</span><br></pre></td></tr></table></figure></p>
+<p>复制到安装目录<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># ls database/</span></span><br><span class="line">install  readme.html  response  rpm  runInstaller  sshsetup  stage  welcome.html</span><br><span class="line">[root@devops oracle]<span class="comment"># mv database/ /tmp/</span></span><br></pre></td></tr></table></figure></p>
+<p>安装依赖</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// centos 7 没有相关安装包可用，可下载 pdksh 的 rpm 包</span><br><span class="line">[root@devops oracle]<span class="comment"># wget http://vault.centos.org/5.11/os/x86_64/CentOS/pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span></span><br><span class="line">// 安装 pdksh 出现依赖问题的话，使用  rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm  --nodeps --force 安装</span><br><span class="line">[root@devops oracle]<span class="comment"># rpm -ivh pdksh-5.2.14-37.el5_8.1.x86_64.rpm</span></span><br><span class="line">//安装其他的依赖</span><br><span class="line">[root@devops oracle]<span class="comment"># yum -y install binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel expat gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers libaio libaio-devel libgcc libstdc++ libstdc++-devel make pdksh sysstat unixODBC unixODBC-devel</span></span><br></pre></td></tr></table></figure>
+<p>检查是否依赖安装完毕<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># rpm -q binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel expat gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers libaio libaio-devel libgcc libstdc++ libstdc++-devel make pdksh sysstat unixODBC unixODBC-devel | grep "not installed"</span></span><br></pre></td></tr></table></figure></p>
+<p>都ok之后，创建oracle的用户和组</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># groupadd oinstall</span></span><br><span class="line">[root@devops oracle]<span class="comment"># groupadd dba</span></span><br><span class="line">[root@devops oracle]<span class="comment"># useradd -g oinstall -G dba -d /home/oracle oracle</span></span><br></pre></td></tr></table></figure>
+<p>优化系统内核参数</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># vim /etc/pam.d/login</span></span><br><span class="line">session    required     pam_limits.so</span><br><span class="line"></span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/security/limits.conf</span></span><br><span class="line">oracle        soft    nproc    8192</span><br><span class="line">oracle        hard    nproc    16384</span><br><span class="line">oracle        soft    nofile  32768</span><br><span class="line">oracle        hard    nofile  65535</span><br><span class="line"></span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/sysctl.conf</span></span><br><span class="line">net.ipv4.ip_local_port_range = 9000 65500</span><br><span class="line">fs.file-max = 6815744</span><br><span class="line">kernel.shmall = 10523004</span><br><span class="line">kernel.shmmax = 6465333657</span><br><span class="line">kernel.shmmni = 4096</span><br><span class="line">kernel.sem = 250 32000 100 128</span><br><span class="line">net.core.rmem_default=262144</span><br><span class="line">net.core.wmem_default=262144</span><br><span class="line">net.core.rmem_max=4194304</span><br><span class="line">net.core.wmem_max=1048576</span><br><span class="line">fs.aio-max-nr = 1048576</span><br><span class="line">[root@devops oracle]<span class="comment"># sysctl -p</span></span><br><span class="line"></span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/profile</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$USER</span> = <span class="string">"oracle"</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$SHELL</span> = <span class="string">"/bin/ksh"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">ulimit</span> -p 16384</span><br><span class="line">    <span class="built_in">ulimit</span> -n 65535</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">ulimit</span> -u 16384 -n 65535</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">[root@devops oracle]<span class="comment"># source /etc/profile</span></span><br></pre></td></tr></table></figure>
+<p>创建 oracle 相关目录<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># mkdir /data/oracle</span></span><br><span class="line"></span><br><span class="line">[root@devops oracle]<span class="comment"># mkdir /data/oracle/product/11.2.0/dbhome_1 -p</span></span><br><span class="line">[root@devops oracle]<span class="comment"># mkdir /data/oracle/oraInventory -p</span></span><br><span class="line">[oracle@devops ~]$ mkdir -p /data/oracle/oradata</span><br><span class="line">[oracle@devops ~]$ mkdir -p /data/oracle/fast_recovery_area</span><br><span class="line">[root@devops oracle]<span class="comment"># chown -R oracle:oinstall /data/oracle/</span></span><br><span class="line">[root@devops oracle]<span class="comment"># chmod -R 775 /data/oracle/</span></span><br></pre></td></tr></table></figure></p>
+<p>配置 swap 空间</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># dd if=/dev/zero of=/data/swap bs=1M count=8192</span></span><br><span class="line">[root@devops oracle]<span class="comment"># mkswap /data/swap</span></span><br><span class="line">[root@devops oracle]<span class="comment"># swapon /data/swap</span></span><br><span class="line">//追加到最后</span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/rc.local</span></span><br><span class="line">swapon -a</span><br><span class="line">[root@devops oracle]<span class="comment"># echo 10 &gt; /proc/sys/vm/swappiness</span></span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/sysctl.conf</span></span><br><span class="line">vm.swappiness = 10</span><br><span class="line">[root@devops oracle]<span class="comment"># sysctl -p</span></span><br><span class="line">[root@devops oracle]<span class="comment"># vim /etc/fstab</span></span><br><span class="line">/data/swap           swap                 swap       defaults      0 0</span><br><span class="line">[root@devops oracle]<span class="comment"># free -m</span></span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          32013         328       16740           0       14944       31274</span><br><span class="line">Swap:          8191           0        8191</span><br></pre></td></tr></table></figure>
+<p>配置 oracle 用户环境变量</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># su - oracle</span></span><br><span class="line">[oracle@devops ~]$ vim .bash_profile</span><br><span class="line"><span class="built_in">umask</span> 022</span><br><span class="line"><span class="built_in">export</span> ORACLE_BASE=/data/oracle</span><br><span class="line"><span class="built_in">export</span> ORACLE_HOME=/data/oracle/product/11.2.0/dbhome_1</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$ORACLE_HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> ORACLE_SID=finance</span><br><span class="line">[oracle@devops ~]$ <span class="built_in">source</span> .bash_profile</span><br><span class="line">[oracle@devops ~]$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h2 id="安装-oracle"><a href="#安装-oracle" class="headerlink" title="安装 oracle"></a>安装 oracle</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@devops oracle]<span class="comment"># cp /tmp/database/response/dbca.rsp /home/oracle/</span></span><br><span class="line">[root@devops oracle]<span class="comment"># cp /tmp/database/response/db_install.rsp /home/oracle/</span></span><br><span class="line">[root@devops oracle]<span class="comment"># cp /tmp/database/response/netca.rsp /home/oracle/</span></span><br><span class="line">[root@devops oracle]<span class="comment"># chown -R oracle:oinstall /home/oracle/*.rsp</span></span><br><span class="line"></span><br><span class="line">// 修改 db_install.rsp 的参数，以实现静默安装 这里的参数如果不明白最好不要修改！！！</span><br><span class="line">[root@devops oracle]<span class="comment"># vim /home/oracle/db_install.rsp</span></span><br><span class="line">oracle.install.option=INSTALL_DB_SWONLY</span><br><span class="line">ORACLE_HOSTNAME=devops</span><br><span class="line">UNIX_GROUP_NAME=oinstall</span><br><span class="line">INVENTORY_LOCATION=/data/oracle/oraInventory</span><br><span class="line">SELECTED_LANGUAGES=en,zh_CN</span><br><span class="line">ORACLE_HOME=/data/oracle/product/11.2.0/dbhome_1</span><br><span class="line">ORACLE_BASE=/data/oracle</span><br><span class="line">oracle.install.db.InstallEdition=EE</span><br><span class="line">oracle.install.db.DBA_GROUP=dba</span><br><span class="line">oracle.install.db.OPER_GROUP=oinstall</span><br><span class="line">oracle.install.db.config.starterdb.type=GENERAL_PURPOSE</span><br><span class="line">oracle.install.db.config.starterdb.globalDBName=finance</span><br><span class="line">oracle.install.db.config.starterdb.SID=finance</span><br><span class="line">oracle.install.db.config.starterdb.characterSet=ZHS16GBK</span><br><span class="line">oracle.install.db.config.starterdb.password.ALL=oracle</span><br><span class="line">DECLINE_SECURITY_UPDATES=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@devops oracle]<span class="comment"># su - oracle</span></span><br><span class="line">[oracle@devops ~]$ <span class="built_in">cd</span> /tmp/database/</span><br><span class="line">// 开始静默安装 oracle 执行这句话之后过一会会提示安装正在进行可以看某一个日志文件例如 /data/oracle/oraInventory/logs/installActions2019-10-19_03-06-35PM.log </span><br><span class="line">// 通过tail -f 可以看到日志然后等提示shudown install 输入<span class="built_in">exit</span>退出oracle账号</span><br><span class="line">// 执行 sh  /data/oracle/oraInventory/orainstRoot.sh sh /data/oracle/product/11.2.0/dbhome_1/root.sh 完成最后的安装</span><br><span class="line">[oracle@devops database]$ ./runInstaller -silent -ignorePrereq -responseFile /home/oracle/db_install.rsp</span><br><span class="line"> </span><br><span class="line">[root@devops tmp]<span class="comment">#  sh  /data/oracle/oraInventory/orainstRoot.sh</span></span><br><span class="line">[root@devops tmp]<span class="comment">#  sh /data/oracle/product/11.2.0/dbhome_1/root.sh</span></span><br></pre></td></tr></table></figure>
+<p>安装监听<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@devops tmp]<span class="comment">#  su - oracle</span></span><br><span class="line">[oracle@devops ~]$ netca /silent /responseFile /home/oracle/netca.rsp</span><br><span class="line">//如果这里提示找不到 netca去看看 上面<span class="built_in">export</span> ORACLE_HOME 这个路径的文件夹是不是没有文件，修改为正确的文件夹即可，如果按照教程来，创建的文件夹则不会</span><br></pre></td></tr></table></figure></p>
+<h2 id="静默模式创建实例"><a href="#静默模式创建实例" class="headerlink" title="静默模式创建实例"></a>静默模式创建实例</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">[oracle@devops ~]$ vim dbca.rsp</span><br><span class="line">//请一个一个的找到这些配置并修改为下面提到的值，如果直接复制下面的配置可能会导致无法安装，记得备份dbca.rsp  </span><br><span class="line">[root@devops ~]<span class="comment"># egrep -v "^$|^#" /home/oracle/dbca.rsp </span></span><br><span class="line">[GENERAL]</span><br><span class="line">RESPONSEFILE_VERSION = <span class="string">"11.2.0"</span></span><br><span class="line">OPERATION_TYPE = <span class="string">"createDatabase"</span></span><br><span class="line">[CREATEDATABASE]</span><br><span class="line">GDBNAME = <span class="string">"finance"</span></span><br><span class="line">SID = <span class="string">"finance"</span></span><br><span class="line">TEMPLATENAME = <span class="string">"General_Purpose.dbc"</span></span><br><span class="line">SYSPASSWORD = <span class="string">"oracle"</span> </span><br><span class="line">SYSTEMPASSWORD = <span class="string">"oracle"</span></span><br><span class="line">SYSMANPASSWORD = <span class="string">"oracle"</span></span><br><span class="line">DBSNMPPASSWORD = <span class="string">"oracle"</span></span><br><span class="line">DATAFILEDESTINATION = /data/oracle/oradata</span><br><span class="line">RECOVERYAREADESTINATION=/data/oracle/flash_recovery_area</span><br><span class="line">CHARACTERSET = <span class="string">"ZHS16GBK"</span></span><br><span class="line">TOTALMEMORY = <span class="string">"13107"</span></span><br><span class="line">[createTemplateFromDB]</span><br><span class="line">SOURCEDB = <span class="string">"myhost:1521:finance"</span></span><br><span class="line">SYSDBAUSERNAME = <span class="string">"system"</span></span><br><span class="line">TEMPLATENAME = <span class="string">"My Copy TEMPLATE"</span></span><br><span class="line">[createCloneTemplate]</span><br><span class="line">SOURCEDB = <span class="string">"finance"</span></span><br><span class="line">TEMPLATENAME = <span class="string">"My Clone TEMPLATE"</span></span><br><span class="line">[DELETEDATABASE]</span><br><span class="line">SOURCEDB = <span class="string">"finance"</span></span><br><span class="line">[generateScripts]</span><br><span class="line">TEMPLATENAME = <span class="string">"New Database"</span></span><br><span class="line">GDBNAME = <span class="string">"finance"</span></span><br><span class="line">[CONFIGUREDATABASE]</span><br><span class="line">[ADDINSTANCE]</span><br><span class="line">DB_UNIQUE_NAME = <span class="string">"finance"</span></span><br><span class="line">NODELIST=</span><br><span class="line">SYSDBAUSERNAME = <span class="string">"sys"</span></span><br><span class="line">[DELETEINSTANCE]</span><br><span class="line">DB_UNIQUE_NAME = <span class="string">"finance"</span></span><br><span class="line">INSTANCENAME = <span class="string">"finance"</span></span><br><span class="line">SYSDBAUSERNAME = <span class="string">"sys"</span></span><br><span class="line"></span><br><span class="line">//执行静默安装</span><br><span class="line">[oracle@devops ~]$ dbca -silent -responseFile /home/oracle/dbca.rsp</span><br><span class="line">Copying database files</span><br><span class="line">1% complete</span><br><span class="line">3% complete</span><br><span class="line">11% complete</span><br><span class="line">18% complete</span><br><span class="line">26% complete</span><br><span class="line">37% complete</span><br><span class="line">Creating and starting Oracle instance</span><br><span class="line">40% complete</span><br><span class="line">45% complete</span><br><span class="line">50% complete</span><br><span class="line">55% complete</span><br><span class="line">56% complete</span><br><span class="line">60% complete</span><br><span class="line">62% complete</span><br><span class="line">Completing Database Creation</span><br><span class="line">66% complete</span><br><span class="line">70% complete</span><br><span class="line">73% complete</span><br><span class="line">85% complete</span><br><span class="line">96% complete</span><br><span class="line">100% complete</span><br><span class="line">Look at the <span class="built_in">log</span> file <span class="string">"/data/oracle/cfgtoollogs/dbca/finance/finance.log"</span> <span class="keyword">for</span> further details.</span><br><span class="line">//到这里就算安装完成了</span><br></pre></td></tr></table></figure>
+<h2 id="测试安装"><a href="#测试安装" class="headerlink" title="测试安装"></a>测试安装</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[oracle@devops ~]$ sqlplus / as sysdba</span><br><span class="line">sys@FINANCE&gt; select * from v<span class="variable">$Version</span>;</span><br><span class="line"></span><br><span class="line">BANNER</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">Oracle Database 11g Enterprise Edition Release 11.2.0.4.0 - 64bit Production</span><br><span class="line">PL/SQL Release 11.2.0.4.0 - Production</span><br><span class="line">CORE    11.2.0.4.0  Production</span><br><span class="line">TNS <span class="keyword">for</span> Linux: Version 11.2.0.4.0 - Production</span><br><span class="line">NLSRTL Version 11.2.0.4.0 - Production</span><br><span class="line"></span><br><span class="line">5 rows selected.</span><br></pre></td></tr></table></figure>
+<p>如果是阿里云服务器要想远程访问数据库记得打开 安全组的1521端口开放</p>
+<h2 id="配置远程连接"><a href="#配置远程连接" class="headerlink" title="配置远程连接"></a>配置远程连接</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[oracle@oracledb ~]$ sqlplus / as sysdba</span><br><span class="line"></span><br><span class="line">//激活scott账户</span><br><span class="line">SQL&gt; alter user scott account unlock;</span><br><span class="line"></span><br><span class="line">SQL&gt; alter user scott identified by fpEeB07zuCqz;</span><br><span class="line">//fpEeB07zuCqz是密码这个最好使用自己的密码不要复制我的。</span><br></pre></td></tr></table></figure>
+<p>配置</p>
+<p>Navicat远程连接Oracle<br>官方网站</p>
+<p><a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html</a></p>
+<p>下载 instantclient-basic，解压压缩文件</p>
+<p>下载Navicat</p>
+<p><a href="http://pan.baidu.com/s/1c2GP9U4" target="_blank" rel="noopener">http://pan.baidu.com/s/1c2GP9U4</a></p>
+<p>打开Navicat，工具→选项</p>
+<p>打开OCI界面，在右侧OCI library一栏中选择instantclient-basic解压目录下的oci.dll，然后点击确定<br><img src="https://img-blog.csdn.net/20170712182542608" alt="image"><br>mac 的直接使用下面的连接方式即可<br>用户名使用刚激活的scott，密码为fpEeB07zuCqz，填完以上信息后点击连接测试<br><img src="https://tvax3.sinaimg.cn/large/c5c35604gy1g83nu18h68j21a8170tnt.jpg" alt="image"></p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-nio2-2/index.html" target="_blank" rel="noopener">CentOS 7 命令行方式安装 Oracle 11.2.0.4.0</a>  </li>
+<li><a href="https://blog.csdn.net/Kenny1993/article/details/75038670" target="_blank" rel="noopener">CentOS 7静默（无图形化界面）安装Oracle 11g</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+    <div>    
+       
+       
+    </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/58379b90.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -477,7 +692,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=pocsm6ui" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=wro5pdbe" title="今日诗词">
       
       
 
@@ -662,7 +877,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=7o09a61f" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=q4i1g8u7" title="今日诗词">
       
       
 
@@ -846,7 +1061,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=k4fq8oy7" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=3vrxv2zh" title="今日诗词">
       
       
 
@@ -1034,7 +1249,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=k7opmbos" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=nafbm5tp" title="今日诗词">
       
       
 
@@ -1230,7 +1445,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=9jq3xmyq" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=v3knglat" title="今日诗词">
       
       
 
@@ -1426,7 +1641,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=m2bqcdia" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=605sw9ao" title="今日诗词">
       
       
 
@@ -1615,7 +1830,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=apuflgcp" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=ddkxtqeg" title="今日诗词">
       
       
 
@@ -1806,7 +2021,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=11hwqqmk" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=mihh209y" title="今日诗词">
       
       
 
@@ -1998,7 +2213,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=1dbhohry" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=x1008wst" title="今日诗词">
       
       
 
@@ -2010,218 +2225,6 @@
 <p> 将查出来的<code>transationId</code>存到数据库即可。</p>
 
           
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-    <div>    
-       
-       
-    </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzl.ink/posts/f85ee54b.html">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="onlyxx">
-      <meta itemprop="description" content="write some content">
-      <meta itemprop="image" content="https://c.disquscdn.com/uploads/users/32736/3375/avatar92.jpg?1547107149">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="左良 | Sean's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/posts/f85ee54b.html" class="post-title-link" itemprop="url">centos安装Nginx并配置https转发</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-29 17:32:00" itemprop="dateCreated datePublished" datetime="2019-01-29T17:32:00+08:00">2019-01-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-30 09:43:33" itemprop="dateModified" datetime="2019-01-30T09:43:33+08:00">2019-01-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f85ee54b.html#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/f85ee54b.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=1h9mhr0s" title="今日诗词">
-      
-      
-
-      
-        
-          <h2 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h2><p>通过使用nginx来部署https是一种方便的方式。本文是一个自己部署https的笔记</p>
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>在Centos的默认镜像中不包含nginx，我们需要添加一个<code>EPEL (extra packages for Enterprise Linux) repository</code> </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure>
-<p>然后运行yum 安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure></p>
-<p>安装好之后可以通过service命令来控制nginx的启动</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">start</span> nginx <span class="comment"># 启动</span></span><br><span class="line">sudo systemctl <span class="keyword">stop</span> nginx  <span class="comment"># 关闭</span></span><br><span class="line">sudo systemctl restart nginx  <span class="comment"># 重启</span></span><br><span class="line">systemctl <span class="keyword">status</span> nginx  <span class="comment"># 检查状态</span></span><br></pre></td></tr></table></figure>
-<p>最好启动开机自启动</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable nginx</span><br></pre></td></tr></table></figure>
-<p>启动之后默认挂载在80端口，https是挂载在443端口，需要检查一下防火墙是否对这些端口进行了封锁。<br>如果系统使用的是<code>firewalld</code> 请使用下列的命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --add-service=http</span><br><span class="line">sudo firewall-cmd --add-service=https</span><br><span class="line">sudo firewall-cmd --runtime-to-permanent</span><br></pre></td></tr></table></figure>
-<p>如果是用的<code>iptables</code> 那就用下列的命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br><span class="line">sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
-<p>然后访问对应的ip就可以看到nginx的默认页面了</p>
-<h2 id="创建证书"><a href="#创建证书" class="headerlink" title="创建证书"></a>创建证书</h2><p>证书的申请我不讲了，有很多方法。根据实际情况看下资料就好了。</p>
-<p>https 的证书包含一个<code>private</code>,<code>public</code>两个部分。我们分别建立两个文件夹来存放他们</p>
-<blockquote>
-<p>/etc/ssl/certs 存放公钥的<code>*.crt</code>，<code>*.pem</code> 两种文件<br>/etc/ssl/private 存放公钥的<code>*.key</code>文件</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /etc/ssl/private</span><br><span class="line">sudo chmod 700 /etc/ssl/private</span><br><span class="line"></span><br><span class="line">sudo mkdir /etc/ssl/certs</span><br><span class="line">sudo chmod 700 /etc/ssl/certs</span><br></pre></td></tr></table></figure>
-<h2 id="配置nginx的Https"><a href="#配置nginx的Https" class="headerlink" title="配置nginx的Https"></a>配置nginx的Https</h2><p>nginx在默认情况下是没有启动https的，所以我们需要新建一个配置文件用来描述https<br>我们需要再<code>/etc/nginx/conf.d/</code>下创建一个<code>.conf</code>结尾的文件，nginx在启动的时候会默认加载<code>conf.d</code>下以<code>.conf</code>结尾的配置文件。<br>我们创建一个ssl的配置文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/nginx/conf.d/ssl.conf</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/posts/f85ee54b.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2314,7 +2317,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2382,7 +2385,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
