@@ -403,12 +403,24 @@
                 
               
 
-              <time title="创建时间：2019-10-19 15:18:00 / 修改时间：18:26:39" itemprop="dateCreated datePublished" datetime="2019-10-19T15:18:00+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 15:18:00" itemprop="dateCreated datePublished" datetime="2019-10-19T15:18:00+08:00">2019-10-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-26 22:22:05" itemprop="dateModified" datetime="2019-10-26T22:22:05+08:00">2019-10-26</time>
               
             
           </span>
@@ -465,7 +477,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=xkcm8pgi" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=17pw5uyw" title="今日诗词">
       
       
 
@@ -509,6 +521,31 @@
 <p><a href="http://pan.baidu.com/s/1c2GP9U4" target="_blank" rel="noopener">http://pan.baidu.com/s/1c2GP9U4</a></p>
 <p>打开Navicat，工具→选项</p>
 <p>打开OCI界面，在右侧OCI library一栏中选择instantclient-basic解压目录下的oci.dll，然后点击确定<br><img src="https://img-blog.csdn.net/20170712182542608" alt="image"><br>mac 的直接使用下面的连接方式即可<br>用户名使用刚激活的scott，密码为fpEeB07zuCqz，填完以上信息后点击连接测试<br><img src="https://tvax3.sinaimg.cn/large/c5c35604gy1g83nu18h68j21a8170tnt.jpg" alt="image"></p>
+<h2 id="更新开机启动"><a href="#更新开机启动" class="headerlink" title="更新开机启动"></a>更新开机启动</h2><p>安装之后发现服务器内存太小了，加了内存重启之后发现oracle没有自动启动，这里加一个开机启动的方法</p>
+<ol>
+<li><p>首先到安装oracle之后的路径就是<code>/data/oracle/product/11.2.0/dbhome_1/</code>的 <code>bin</code>中修改dbstart的<code>ORACLE_HOME_LISTNER</code>属性<br>修改为 <code>$ORACLE_HOME</code> 原值为$1</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">cd</span> /data/oracle/product/11.2.0/dbhome_1/bin</span><br><span class="line"> vim dbstart</span><br><span class="line"> <span class="comment"># First argument is used to bring up Oracle Net Listener</span></span><br><span class="line">ORACLE_HOME_LISTNER=<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改另一个<code>dbshut</code>文件 将<code>ORACLE_HOME_LISTNER</code>的值改成<code>$ORACLE_HOME</code></p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim dbshut</span><br><span class="line"></span><br><span class="line">ORACLE_HOME_LISTNER=<span class="variable">$ORACLE_HOME</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>第三步修改<code>/etc/oratab</code> 将最后的<code>N</code> 改成<code>Y</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/oratab</span><br><span class="line"></span><br><span class="line"><span class="comment"># The first and second fields are the system identifier and home</span></span><br><span class="line"><span class="comment"># directory of the database respectively.  The third filed indicates</span></span><br><span class="line"><span class="comment"># to the dbstart utility that the database should , "Y", or should not,</span></span><br><span class="line"><span class="comment"># "N", be brought up at system boot time.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Multiple entries with the same $ORACLE_SID are not allowed.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">finance:/data/oracle/product/11.2.0/dbhome_1:Y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建开机启动脚本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/init.d/oracle</span><br><span class="line"></span><br><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="comment"># oracle: Start/Stop Oracle Database 11g R2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig: 345 90 10</span></span><br><span class="line"><span class="comment"># description: The Oracle Database is an Object-Relational Database Management System.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># processname: oracle</span></span><br><span class="line">. /etc/rc.d/init.d/<span class="built_in">functions</span></span><br><span class="line">LOCKFILE=/var/lock/subsys/oracle</span><br><span class="line">ORACLE_HOME=/data/oracle/product/11.2.0/dbhome_1</span><br><span class="line">ORACLE_USER=oracle</span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line"><span class="string">'start'</span>)</span><br><span class="line">   <span class="keyword">if</span> [ -f <span class="variable">$LOCKFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="variable">$0</span> already running.</span><br><span class="line">      <span class="built_in">exit</span> 1</span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line">   <span class="built_in">echo</span> -n $<span class="string">"Starting Oracle Database:"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/lsnrctl start"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/dbstart <span class="variable">$ORACLE_HOME</span>"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/emctl start dbconsole"</span></span><br><span class="line">   touch <span class="variable">$LOCKFILE</span></span><br><span class="line">   ;;</span><br><span class="line"><span class="string">'stop'</span>)</span><br><span class="line">   <span class="keyword">if</span> [ ! -f <span class="variable">$LOCKFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="variable">$0</span> already stopping.</span><br><span class="line">      <span class="built_in">exit</span> 1</span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line">   <span class="built_in">echo</span> -n $<span class="string">"Stopping Oracle Database:"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/lsnrctl stop"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/dbshut"</span></span><br><span class="line">   su - <span class="variable">$ORACLE_USER</span> -c <span class="string">"<span class="variable">$ORACLE_HOME</span>/bin/emctl stop dbconsole"</span></span><br><span class="line">   rm -f <span class="variable">$LOCKFILE</span></span><br><span class="line">   ;;</span><br><span class="line"><span class="string">'restart'</span>)</span><br><span class="line">   <span class="variable">$0</span> stop</span><br><span class="line">   <span class="variable">$0</span> start</span><br><span class="line">   ;;</span><br><span class="line"><span class="string">'status'</span>)</span><br><span class="line">   <span class="keyword">if</span> [ -f <span class="variable">$LOCKFILE</span> ]; <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="variable">$0</span> started.</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="variable">$0</span> stopped.</span><br><span class="line">   <span class="keyword">fi</span></span><br><span class="line">   ;;</span><br><span class="line">*)</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> [start|stop|status]"</span></span><br><span class="line">   <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置执行权限</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x /etc/init.d/oracle</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>设置开机启动，运行oracle</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> oracle</span><br><span class="line"></span><br><span class="line">service oracle start</span><br></pre></td></tr></table></figure>
+<p>好了，如果严格按照之前的安装来，在按照这个步骤应该就可以成功启动oracle了<br>注意启动的<code>$ORACLE_HOME</code> 要设置正确！！！</p>
 <h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><ol>
 <li><a href="https://www.ibm.com/developerworks/cn/java/j-nio2-2/index.html" target="_blank" rel="noopener">CentOS 7 命令行方式安装 Oracle 11.2.0.4.0</a>  </li>
 <li><a href="https://blog.csdn.net/Kenny1993/article/details/75038670" target="_blank" rel="noopener">CentOS 7静默（无图形化界面）安装Oracle 11g</a></li>
@@ -692,7 +729,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=wro5pdbe" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=0xev0h8l" title="今日诗词">
       
       
 
@@ -877,7 +914,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=q4i1g8u7" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=yezp0kwk" title="今日诗词">
       
       
 
@@ -1061,7 +1098,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=3vrxv2zh" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=iv3mtg9i" title="今日诗词">
       
       
 
@@ -1249,7 +1286,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=nafbm5tp" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=sehumzeg" title="今日诗词">
       
       
 
@@ -1445,7 +1482,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=v3knglat" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=f14169ui" title="今日诗词">
       
       
 
@@ -1641,7 +1678,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=605sw9ao" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=0liv07ur" title="今日诗词">
       
       
 
@@ -1830,7 +1867,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=ddkxtqeg" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=wwubunnd" title="今日诗词">
       
       
 
@@ -2021,7 +2058,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=mihh209y" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=imq095ve" title="今日诗词">
       
       
 
@@ -2213,7 +2250,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-    <img src="https://v2.jinrishici.com/one.svg?t=x1008wst" title="今日诗词">
+    <img src="https://v2.jinrishici.com/one.svg?t=o9aqv3un" title="今日诗词">
       
       
 
